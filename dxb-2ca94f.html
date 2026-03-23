@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marina Residence Tower B - OK.com</title>
+    <meta property="og:title" content="Marina Residence Tower B | OK.com">
+    <meta property="og:description" content="1 Bed 1 Living 2 Bath in Dubai Marina | AED 8,000">
+    <meta property="og:image" content="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/jyxez-Y-2yH33LdpdLsNOQ/3JxPcV83TM_eouAUmezf09FDJ98YInCmBU5GgQ70jPlrJOwKZjEZCHryE8Qx1X4Hgbi7fyV4tvvr16uVppUit7wvXIA_wh5zBRHK7UyXv_gW2ETn665aFqx417IdDFt83XHRyK0AdrrNUmMOJxPEkQ/pMmskIZLlKFHu8UjRj9WLJuuDI3g3i_uv7QjQPoqiwM">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;}
+        body.rtl{direction:rtl;font-family:'Noto Sans Arabic',-apple-system,sans-serif;}
+        body.rtl .price-card{border-left:none;border-right:4px solid #1e3a5f;}
+        body.rtl .prev{left:auto;right:10px;}
+        body.rtl .next{right:auto;left:10px;}
+        .header{background:#1e3a5f;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;}
+        .brand{color:white;font-size:20px;font-weight:700;flex-shrink:0;}
+        .brand span{color:#f59e0b;}
+        .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+        .cat-badge{background:#10b981;color:white;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+        .lang-switcher{display:flex;gap:3px;}
+        .lang-btn{background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600;transition:all 0.2s;}
+        .lang-btn.active{background:white;color:#1e3a5f;border-color:white;}
+
+        .slideshow{position:relative;width:100%;height:290px;background:#0f172a;overflow:hidden;}
+        @media(min-width:768px){.slideshow{height:450px;}}
+        .slide{display:none;width:100%;height:100%;}
+        .slide.active{display:block;}
+        .slide img{width:100%;height:100%;object-fit:cover;}
+        .no-image{display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 14px;cursor:pointer;font-size:16px;border-radius:4px;z-index:10;}
+        .prev{left:10px;} .next{right:10px;}
+        .dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+        .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.3s;}
+        .dot.active{background:white;}
+        .image-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.6);color:white;padding:3px 8px;border-radius:10px;font-size:12px;}
+
+        .container{max-width:800px;margin:0 auto;padding:16px 16px 90px;}
+        .title-section{margin:16px 0 12px;}
+        .community-name{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2;margin-bottom:6px;}
+        .location{display:flex;align-items:center;gap:6px;color:#64748b;font-size:13px;text-decoration:none;}
+        .location:hover{color:#3b82f6;}
+
+        .price-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border-left:4px solid #1e3a5f;}
+        .price-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+        .price-value{font-size:28px;font-weight:800;color:#1e3a5f;}
+        .price-currency{font-size:14px;font-weight:600;color:#64748b;margin-right:4px;}
+
+        .specs-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;}
+        .spec-item{display:flex;align-items:center;gap:10px;}
+        .spec-icon{font-size:22px;}
+        .spec-value{font-size:16px;font-weight:700;color:#0f172a;}
+        .spec-label{font-size:11px;color:#94a3b8;}
+
+        .highlights-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .card-title{font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+        .highlights-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#334155;line-height:1.5;}
+        .highlights-list li::before{content:"✓";color:#10b981;font-weight:700;font-size:14px;flex-shrink:0;}
+
+        .cta-bar{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);z-index:100;}
+        .cta-inner{max-width:800px;margin:0 auto;}
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:white;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;text-decoration:none;width:100%;white-space:nowrap;}
+        .wa-btn:hover{background:#1da851;}
+
+        .footer{text-align:center;padding:16px;color:#94a3b8;font-size:11px;}
+        .hidden{display:none!important;}
+    </style>
+</head>
+<body id="page-body">
+    <div class="header">
+        <div class="brand">OK<span>.</span>com</div>
+        <div class="header-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+                <button class="lang-btn" onclick="setLang('ar',this)">عر</button>
+                <button class="lang-btn" onclick="setLang('zh',this)">中</button>
+            </div>
+            <div id="cat-badge" class="cat-badge">Rental</div>
+        </div>
+    </div>
+
+    <div class="slideshow">
+        <div class="slide active"><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/jyxez-Y-2yH33LdpdLsNOQ/3JxPcV83TM_eouAUmezf09FDJ98YInCmBU5GgQ70jPlrJOwKZjEZCHryE8Qx1X4Hgbi7fyV4tvvr16uVppUit7wvXIA_wh5zBRHK7UyXv_gW2ETn665aFqx417IdDFt83XHRyK0AdrrNUmMOJxPEkQ/pMmskIZLlKFHu8UjRj9WLJuuDI3g3i_uv7QjQPoqiwM" alt="Property 1"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/eph962J6SBPsFOV9xiTIRw/MlyGqbywbf-xoMASxqkWbzUMpmhpaKwKoy0wbLLAGv4nanKgErDt2YtFDjLgHrHNpsHBodu1mtU6UlJjpNQrS_qvQqi5Jo15v7TMMLXTGwn9RnHrv1FcJTolTzFZip0x1yddOisRQXDCrI3w5j6blQ/ixOjpXJV9TgyfXlJwubprKETlYGccqkXgTptg8hbatw" alt="Property 2"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/v7fi6IKDu8vm6uF5yIyIZg/Li1PU9wX8zn5CDW0saf8uRuWUozrUOwjCqSVFhgZfts3K-Mi7-Lb3aJqSuV37yfnw2RwYel04B3AdrsdELRTwJLnKAi3xKF17jsp1Dvi8utpYaxaMoRXTlsUXi7yAPzidhPAzexDCHheAdRwmUI-WQ/HB6TFpVpJBKdy8coGM9bBPLq8qu-kBzwvnW1Odey33A" alt="Property 3"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/DUp-1vcvAEvpY6eDpZ4xUg/azDyy_ZYjufyIjUugCXjHt9jptMK99fqUlGSt5rd9dINWjfsGva1UlWY3u2_EMBGejDEyeSscJU-WZDCPPkiAcOhevaarUocVUSlkOvE22TzhA-7R8NWH0o_Kzo3e6CBMGO040h05Q-8aSHs2EFyNg/aif3IpY4fjVik1be6s1mp9l9bXJe776hbKPi4gGNR0Y" alt="Property 4"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261941/dubai_listings/vtyt59hyl0ori7t13fzu.jpg" alt="Property 5"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/gN2_0wWDgCh-OzIZdycLGw/lpd6_HJusWjAOeejVwkFV70YdkcNTM5p41reLCI3bs4yMb3CSvKxIdIEEtyVA3wG7gqzFdL6oEGpQIU7mEX8yA1TZBX2vIP9rx7FTeqwyYDJ_vDjto7cAWfy5vYDI1j_FgMfgaDibsbCWUNNA0anhw/_9R80QJcXm4U2d7tQgr-mGTVQz8vU1H_wc8Hn7cdStI" alt="Property 6"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261943/dubai_listings/t34l0gmbxppuxn7llkdh.jpg" alt="Property 7"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261944/dubai_listings/yaaydph6qt0gnuneg8ig.jpg" alt="Property 8"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/lZgSAHC_JWh19oNQNjws0A/k_4aROzmk43121DIvEe6it6oyMMw1mYNlAC7DLYSVhxP9mNitjEaRcCp0F46QEDQqhH5yXyykHVVBHvQjZaVXJFG4qiz1MVFpo7rIjk5oHVcDJklPOFKUsvuY0lEqZOCQHrKeGBMuKG1THrnIkxqPQ/NNPFzBWLpJfdZAzeQZykDJj0xYOPbkjkEm-uiN03fkQ" alt="Property 9"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261946/dubai_listings/b2jjlcqbcraai9yxqmij.jpg" alt="Property 10"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261947/dubai_listings/yx7lalmpr0e8ijqm3plf.jpg" alt="Property 11"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261948/dubai_listings/aqdmc7ohp5mjejh8xljd.jpg" alt="Property 12"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261949/dubai_listings/payuclhpmya62dvi2ysn.jpg" alt="Property 13"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261950/dubai_listings/fpj3qqkhnr86vyiilic8.jpg" alt="Property 14"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261951/dubai_listings/nrtuy7ux6gec41rzua91.jpg" alt="Property 15"></div>
+
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button><button class="next" onclick="changeSlide(1)">&#10095;</button>
+        <div class="dots"><span class="dot active" onclick="goToSlide(0)"></span>
+<span class="dot " onclick="goToSlide(1)"></span>
+<span class="dot " onclick="goToSlide(2)"></span>
+<span class="dot " onclick="goToSlide(3)"></span>
+<span class="dot " onclick="goToSlide(4)"></span>
+<span class="dot " onclick="goToSlide(5)"></span>
+<span class="dot " onclick="goToSlide(6)"></span>
+<span class="dot " onclick="goToSlide(7)"></span>
+<span class="dot " onclick="goToSlide(8)"></span>
+<span class="dot " onclick="goToSlide(9)"></span>
+<span class="dot " onclick="goToSlide(10)"></span>
+<span class="dot " onclick="goToSlide(11)"></span>
+<span class="dot " onclick="goToSlide(12)"></span>
+<span class="dot " onclick="goToSlide(13)"></span>
+<span class="dot " onclick="goToSlide(14)"></span>
+</div>
+        <div class="image-count">1 / 15</div>
+    </div>
+
+    <div class="container">
+        <div class="title-section">
+            <div class="community-name" id="community-name">Marina Residence Tower B</div>
+            <div class="location">
+                <span>📍</span>
+                <span id="loc-text">Dubai Marina · Dubai Marina</span>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-label" id="price-label">ASKING PRICE</div>
+            <div class="price-value"><span class="price-currency">AED</span>8,000</div>
+        </div>
+
+        <div class="specs-card">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">🚪</span>
+                    <div>
+                        <div class="spec-value" id="unit-value">1 Bed 1 Living 2 Bath</div>
+                        <div class="spec-label" id="unit-label">Unit Type</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        
+        <div class="highlights-card">
+            <div class="card-title" id="highlights-title">Property Highlights</div>
+            <ul class="highlights-list" id="highlights-en"><li>Fully furnished, ready to move in</li><li>Just 1-minute walk from the metro station</li><li>Located in the heart of Dubai Marina</li><li>Walking distance to Marina Walk, shops, and cafes</li><li>Convenient transportation, complete living facilities</li></ul>
+            <ul class="highlights-list hidden" id="highlights-ar"><li>مفروش بالكامل، جاهز للسكن</li><li>على بعد دقيقة واحدة فقط سيرًا على الأقدام من محطة المترو</li><li>يقع في قلب دبي مارينا</li><li>على مسافة قريبة سيرًا على الأقدام من ممشى المارينا والمتاجر والمقاهي</li><li>مواصلات مريحة، ومرافق معيشية متكاملة</li></ul>
+            <ul class="highlights-list hidden" id="highlights-zh"><li>设施齐全，拎包入住</li><li>距离地铁站仅1分钟步行路程</li><li>位于迪拜码头中心地带</li><li>步行可达Marina Walk、商店和咖啡馆</li><li>交通便利，生活设施完善</li></ul>
+        </div>
+
+        <div class="footer" id="footer-text">Powered by OK.com · Dubai Real Estate</div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="cta-inner">
+            <a id="wa-btn" href="https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20Marina%20Residence%20Tower%20B%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-2ca94f.html" class="wa-btn" target="_blank">
+                <span style="font-size:20px;">💬</span>
+                <span id="cta-text">Contact Us to View</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var currentSlide=0;
+        var slideEls=document.querySelectorAll('.slide');
+        var dotEls=document.querySelectorAll('.dot');
+        var countEl=document.querySelector('.image-count');
+        function updateSlide(){
+            slideEls.forEach(function(s){s.classList.remove('active');});
+            dotEls.forEach(function(d){d.classList.remove('active');});
+            if(slideEls[currentSlide])slideEls[currentSlide].classList.add('active');
+            if(dotEls[currentSlide])dotEls[currentSlide].classList.add('active');
+            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slideEls.length;
+        }
+        function changeSlide(dir){currentSlide=(currentSlide+dir+slideEls.length)%slideEls.length;updateSlide();}
+        function goToSlide(n){currentSlide=n;updateSlide();}
+
+        const data={
+            en:{
+                dir:'ltr', cat:'Rental',
+                community:'Marina Residence Tower B',
+                loc:'Dubai Marina · Dubai Marina',
+                priceLabel:'ASKING PRICE',
+                unitValue:'1 Bed 1 Living 2 Bath',
+                unitLabel:'Unit Type', sizeLabel:'Sqft',
+                highlightsTitle:'Property Highlights',
+                ctaText:'Contact Us to View',
+                waLink:'https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20Marina%20Residence%20Tower%20B%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-2ca94f.html',
+                footer:'Powered by OK.com · Dubai Real Estate',
+            },
+            ar:{
+                dir:'rtl', cat:'إيجار',
+                community:'برج مارينا ريزيدنس B',
+                loc:'دبي مارينا · دبي مارينا',
+                priceLabel:'السعر المطلوب',
+                unitValue:'1 غرفة 1 صالة 2 حمام',
+                unitLabel:'نوع الوحدة', sizeLabel:'قدم مربع',
+                highlightsTitle:'مميزات العقار',
+                ctaText:'تواصل لمعاينة العقار',
+                waLink:'https://wa.me/8613611372696?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D8%A8%D9%80%20%D8%A8%D8%B1%D8%AC%20%D9%85%D8%A7%D8%B1%D9%8A%D9%86%D8%A7%20%D8%B1%D9%8A%D8%B2%D9%8A%D8%AF%D9%86%D8%B3%20B%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-2ca94f.html',
+                footer:'بدعم من OK.com · عقارات دبي',
+            },
+            zh:{
+                dir:'ltr', cat:'租房',
+                community:'Marina Residence Tower B',
+                loc:'迪拜码头 · 迪拜码头',
+                priceLabel:'参考价格',
+                unitValue:'1室1厅2卫',
+                unitLabel:'户型', sizeLabel:'平方英尺',
+                highlightsTitle:'房源特点',
+                ctaText:'联系看房',
+                waLink:'https://wa.me/8613611372696?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E5%AF%B9Marina%20Residence%20Tower%20B%E6%84%9F%E5%85%B4%E8%B6%A3%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-2ca94f.html',
+                footer:'由 OK.com 提供支持 · 迪拜房产',
+            },
+        };
+
+        function setLang(lang, btn){
+            const t=data[lang];
+            document.getElementById('page-body').className=lang==='ar'?'rtl':'';
+            document.querySelector('html').lang=lang==='ar'?'ar':lang==='zh'?'zh-CN':'en';
+
+            document.getElementById('cat-badge').textContent=t.cat;
+            document.getElementById('community-name').textContent=t.community;
+            document.getElementById('loc-text').textContent=t.loc;
+            document.getElementById('price-label').textContent=t.priceLabel;
+            document.getElementById('unit-value').textContent=t.unitValue;
+            document.getElementById('unit-label').textContent=t.unitLabel;
+            const sl=document.getElementById('size-label');
+            if(sl)sl.textContent=t.sizeLabel;
+            const ht=document.getElementById('highlights-title');
+            if(ht)ht.textContent=t.highlightsTitle;
+            document.getElementById('cta-text').textContent=t.ctaText;
+            document.getElementById('wa-btn').href=t.waLink;
+            document.getElementById('footer-text').textContent=t.footer;
+
+            ['en','ar','zh'].forEach(l=>{
+                const el=document.getElementById('highlights-'+l);
+                if(el)el.className='highlights-list'+(l===lang?'':' hidden');
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+            if(btn)btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
