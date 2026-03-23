@@ -164,18 +164,18 @@
     </div>
 
     <script>
-        let currentSlide=0;
-        const slides=document.querySelectorAll('.slide');
-        const dots=document.querySelectorAll('.dot');
-        const countEl=document.querySelector('.image-count');
+        var currentSlide=0;
+        var slideEls=document.querySelectorAll('.slide');
+        var dotEls=document.querySelectorAll('.dot');
+        var countEl=document.querySelector('.image-count');
         function updateSlide(){
-            slides.forEach(s=>s.classList.remove('active'));
-            dots.forEach(d=>d.classList.remove('active'));
-            if(slides[currentSlide])slides[currentSlide].classList.add('active');
-            if(dots[currentSlide])dots[currentSlide].classList.add('active');
-            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slides.length;
+            slideEls.forEach(function(s){s.classList.remove('active');});
+            dotEls.forEach(function(d){d.classList.remove('active');});
+            if(slideEls[currentSlide])slideEls[currentSlide].classList.add('active');
+            if(dotEls[currentSlide])dotEls[currentSlide].classList.add('active');
+            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slideEls.length;
         }
-        function changeSlide(dir){currentSlide=(currentSlide+dir+slides.length)%slides.length;updateSlide();}
+        function changeSlide(dir){currentSlide=(currentSlide+dir+slideEls.length)%slideEls.length;updateSlide();}
         function goToSlide(n){currentSlide=n;updateSlide();}
 
         const data={
