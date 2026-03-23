@@ -5,101 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marina Residence Tower B - OK.com</title>
     <meta property="og:title" content="Marina Residence Tower B | OK.com">
-    <meta property="og:description" content="1室1厅2卫 in Dubai Marina | AED 8,000">
+    <meta property="og:description" content="1 Bed 1 Living 2 Bath in Dubai Marina | AED 8,000">
     <meta property="og:image" content="https://v5.airtableusercontent.com/v3/u/51/51/1774260000000/h0CPBDHEZne1OvI5LSDXtw/CCkrk6G-TXmMLIAqdYbyiAy0jmsMQovInsLQMxjwQkrZyiwNsCMSSHe00EebU-u_nCe3EHt3E6a3YeqDxqsOmCajx7bDSgaEqfTWJ3v11xxvMc4I3kVVWVznE0YF4ptgiNKYBDaOf1VEJymlusDpsQ/CJT14VnqDrlqVkJ6gzKbjpXS6tOkDyIaqjfijP4s3Fc">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f8fafc; color:#1e293b; }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;}
+        body.rtl{direction:rtl;font-family:'Noto Sans Arabic',-apple-system,sans-serif;}
+        body.rtl .price-card{border-left:none;border-right:4px solid #1e3a5f;}
+        body.rtl .prev{left:auto;right:10px;}
+        body.rtl .next{right:auto;left:10px;}
+        body.rtl .map-arrow{transform:scaleX(-1);}
 
-        /* RTL support */
-        body.rtl { direction:rtl; font-family:'Noto Sans Arabic','Segoe UI',sans-serif; }
-        body.rtl .price-card { border-left:none; border-right:4px solid #1e3a5f; }
-        body.rtl .prev { left:auto; right:10px; }
-        body.rtl .next { right:auto; left:10px; }
+        .header{background:#1e3a5f;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;}
+        .brand{color:white;font-size:20px;font-weight:700;flex-shrink:0;}
+        .brand span{color:#f59e0b;}
+        .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+        .cat-badge{background:#10b981;color:white;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+        .lang-switcher{display:flex;gap:3px;}
+        .lang-btn{background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600;transition:all 0.2s;}
+        .lang-btn.active{background:white;color:#1e3a5f;border-color:white;}
 
-        /* Header */
-        .header { background:#1e3a5f; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; gap:8px; }
-        .brand { color:white; font-size:20px; font-weight:700; flex-shrink:0; }
-        .brand span { color:#f59e0b; }
-        .header-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
-        .category-badge { background:#10b981; color:white; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:600; white-space:nowrap; }
+        .slideshow{position:relative;width:100%;height:290px;background:#0f172a;overflow:hidden;}
+        @media(min-width:768px){.slideshow{height:450px;}}
+        .slide{display:none;width:100%;height:100%;}
+        .slide.active{display:block;}
+        .slide img{width:100%;height:100%;object-fit:cover;}
+        .no-image{display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 14px;cursor:pointer;font-size:16px;border-radius:4px;z-index:10;}
+        .prev{left:10px;} .next{right:10px;}
+        .dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+        .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.3s;}
+        .dot.active{background:white;}
+        .image-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.6);color:white;padding:3px 8px;border-radius:10px;font-size:12px;}
 
-        /* Language switcher */
-        .lang-switcher { display:flex; gap:4px; }
-        .lang-btn { background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.3); border-radius:6px; padding:4px 8px; font-size:12px; cursor:pointer; font-weight:600; transition:all 0.2s; white-space:nowrap; }
-        .lang-btn.active { background:white; color:#1e3a5f; }
-        .lang-btn:hover { background:rgba(255,255,255,0.25); }
+        .container{max-width:800px;margin:0 auto;padding:16px 16px 90px;}
+        .title-section{margin:16px 0 12px;}
+        .community-name{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2;margin-bottom:6px;}
+        .location{display:flex;align-items:center;gap:6px;color:#64748b;font-size:13px;text-decoration:none;}
+        .location:hover{color:#3b82f6;}
 
-        /* Slideshow */
-        .slideshow { position:relative; width:100%; height:300px; background:#0f172a; overflow:hidden; }
-        @media(min-width:768px) { .slideshow { height:460px; } }
-        .slide { display:none; width:100%; height:100%; }
-        .slide.active { display:block; }
-        .slide img { width:100%; height:100%; object-fit:cover; }
-        .no-image { display:flex; align-items:center; justify-content:center; height:100%; color:#94a3b8; }
-        .prev,.next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:white; border:none; padding:10px 14px; cursor:pointer; font-size:16px; border-radius:4px; z-index:10; }
-        .prev { left:10px; }
-        .next { right:10px; }
-        .dots { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px; }
-        .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.5); cursor:pointer; transition:background 0.3s; }
-        .dot.active { background:white; }
-        .image-count { position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:white; padding:3px 8px; border-radius:10px; font-size:12px; }
+        .price-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border-left:4px solid #1e3a5f;}
+        .price-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+        .price-value{font-size:28px;font-weight:800;color:#1e3a5f;}
+        .price-currency{font-size:14px;font-weight:600;color:#64748b;margin-right:4px;}
 
-        /* Content */
-        .container { max-width:800px; margin:0 auto; padding:16px 16px 90px; }
+        .specs-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;}
+        .spec-item{display:flex;align-items:center;gap:10px;}
+        .spec-icon{font-size:22px;}
+        .spec-value{font-size:16px;font-weight:700;color:#0f172a;}
+        .spec-label{font-size:11px;color:#94a3b8;}
 
-        .title-section { margin:16px 0; }
-        .community-name { font-size:24px; font-weight:700; color:#0f172a; line-height:1.2; margin-bottom:6px; }
-        .location { display:flex; align-items:center; gap:6px; color:#64748b; font-size:14px; cursor:pointer; text-decoration:none; }
-        .location:hover { color:#1e3a5f; }
+        .highlights-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .card-title{font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+        .highlights-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#334155;line-height:1.5;}
+        .highlights-list li::before{content:"✓";color:#10b981;font-weight:700;font-size:14px;flex-shrink:0;}
 
-        .price-card { background:white; border-radius:14px; padding:16px 20px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); border-left:4px solid #1e3a5f; }
-        .price-label { font-size:11px; color:#94a3b8; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px; }
-        .price-value { font-size:30px; font-weight:800; color:#1e3a5f; }
-        .price-currency { font-size:15px; font-weight:600; color:#64748b; margin-right:4px; }
+        .map-card{background:white;border-radius:14px;padding:14px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .map-link{display:flex;align-items:center;gap:10px;color:#1e3a5f;text-decoration:none;font-size:14px;font-weight:600;}
+        .map-link:hover{color:#3b82f6;}
+        .map-arrow{margin-left:auto;font-size:16px;}
 
-        .specs-card { background:white; border-radius:14px; padding:16px 20px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
-        .specs-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(110px,1fr)); gap:14px; }
-        .spec-item { display:flex; align-items:center; gap:10px; }
-        .spec-icon { font-size:22px; }
-        .spec-value { font-size:17px; font-weight:700; color:#0f172a; }
-        .spec-label { font-size:11px; color:#94a3b8; }
+        .cta-bar{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);z-index:100;}
+        .cta-inner{max-width:800px;margin:0 auto;}
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:white;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;text-decoration:none;width:100%;white-space:nowrap;}
+        .wa-btn:hover{background:#1da851;}
 
-        .highlights-card { background:white; border-radius:14px; padding:16px 20px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
-        .card-title { font-size:15px; font-weight:700; color:#0f172a; margin-bottom:12px; }
-        .highlights-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
-        .highlights-list li { display:flex; align-items:flex-start; gap:8px; font-size:14px; color:#334155; line-height:1.5; }
-        .highlights-list li::before { content:"✓"; color:#10b981; font-weight:700; font-size:15px; flex-shrink:0; }
-
-        .map-card { background:white; border-radius:14px; padding:16px 20px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
-        .map-btn { display:flex; align-items:center; gap:10px; color:#1e3a5f; text-decoration:none; font-size:14px; font-weight:600; }
-        .map-btn:hover { color:#3b82f6; }
-
-        /* CTA */
-        .cta-bar { position:fixed; bottom:0; left:0; right:0; background:white; padding:10px 16px; box-shadow:0 -4px 20px rgba(0,0,0,0.1); z-index:100; }
-        .cta-inner { max-width:800px; margin:0 auto; }
-        .whatsapp-btn { display:flex; align-items:center; justify-content:center; gap:8px; background:#25d366; color:white; border:none; border-radius:12px; padding:13px 16px; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; width:100%; white-space:nowrap; }
-        .whatsapp-btn:hover { background:#1da851; }
-
-        .footer { text-align:center; padding:16px; color:#94a3b8; font-size:11px; }
+        .footer{text-align:center;padding:16px;color:#94a3b8;font-size:11px;}
+        .hidden{display:none!important;}
     </style>
 </head>
 <body id="page-body">
-
-    <!-- Header -->
     <div class="header">
         <div class="brand">OK<span>.</span>com</div>
         <div class="header-right">
             <div class="lang-switcher">
-                <button class="lang-btn active" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" onclick="setLang('ar')">عر</button>
-                <button class="lang-btn" onclick="setLang('zh')">中</button>
+                <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+                <button class="lang-btn" onclick="setLang('ar',this)">عر</button>
+                <button class="lang-btn" onclick="setLang('zh',this)">中</button>
             </div>
-            <div class="category-badge" id="cat-badge">Rental</div>
+            <div id="cat-badge" class="cat-badge">Rental</div>
         </div>
     </div>
 
-    <!-- Slideshow -->
     <div class="slideshow">
         <div class="slide active"><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774260000000/h0CPBDHEZne1OvI5LSDXtw/CCkrk6G-TXmMLIAqdYbyiAy0jmsMQovInsLQMxjwQkrZyiwNsCMSSHe00EebU-u_nCe3EHt3E6a3YeqDxqsOmCajx7bDSgaEqfTWJ3v11xxvMc4I3kVVWVznE0YF4ptgiNKYBDaOf1VEJymlusDpsQ/CJT14VnqDrlqVkJ6gzKbjpXS6tOkDyIaqjfijP4s3Fc" alt="Property 1"></div>
 <div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774260000000/kh9jY1KJO6rCrfl4-JigfQ/Nq0_y-OpHcyEJs_Qx1qyNN2HmWgONrIhEX6Z816zhkDbmX5tNLt5emeBK_85oDQMMcrk2ik97tdwveVvtLoWEBrumlAtyP201alImZDJAh3PO2nXP1XeqT5pWyRexv58WXcx9_fhH8AWZmKHq35I0g/T6zquOWKaxmnYGB6hVp9K4sWWmNdDoeWFyucWSZbP9g" alt="Property 2"></div>
@@ -117,22 +108,18 @@
         <div class="image-count">1 / 5</div>
     </div>
 
-    <!-- Content -->
     <div class="container">
         <div class="title-section">
-            <div class="community-name">Marina Residence Tower B</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Marina+Residence+Tower+B+Dubai+Marina+Dubai" target="_blank" class="location">
+            <div class="community-name" id="community-name">Marina Residence Tower B</div>
+            <a href="https://www.openstreetmap.org/search?query=Marina+Residence+Tower+B+Dubai+Marina+Dubai" target="_blank" class="location">
                 <span>📍</span>
                 <span id="loc-text">Dubai Marina · Dubai Marina</span>
-                <span style="font-size:11px;color:#3b82f6;" id="map-hint">View on Map →</span>
             </a>
         </div>
 
         <div class="price-card">
             <div class="price-label" id="price-label">ASKING PRICE</div>
-            <div class="price-value">
-                <span class="price-currency">AED</span>8,000
-            </div>
+            <div class="price-value"><span class="price-currency">AED</span>8,000</div>
         </div>
 
         <div class="specs-card">
@@ -140,8 +127,8 @@
                 <div class="spec-item">
                     <span class="spec-icon">🚪</span>
                     <div>
-                        <div class="spec-value">1室1厅2卫</div>
-                        <div class="spec-label" id="label-unit">Unit Type</div>
+                        <div class="spec-value" id="unit-value">1 Bed 1 Living 2 Bath</div>
+                        <div class="spec-label" id="unit-label">Unit Type</div>
                     </div>
                 </div>
                 
@@ -150,30 +137,26 @@
 
         
         <div class="highlights-card">
-            <div class="card-title" id="title-highlights">Property Highlights</div>
-            <ul class="highlights-list"><li>拎包入住，设施齐全</li>
-<li>紧邻DMCC地铁站</li>
-<li>位于迪拜码头核心地段</li>
-<li>步行可达Marina Walk</li>
-<li>周边配套完善</li>
-</ul>
+            <div class="card-title" id="highlights-title">Property Highlights</div>
+            <ul class="highlights-list" id="highlights-en"><li>Fully Furnished and Ready to Move In</li><li>Close to DMCC Metro Station</li><li>Located in the heart of Dubai Marina</li><li>Walking distance to Marina Walk</li><li>Well-developed surrounding amenities</li></ul>
+            <ul class="highlights-list hidden" id="highlights-ar"><li>مفروش بالكامل وجاهز للسكن</li><li>قريب من محطة مترو DMCC</li><li>يقع في قلب دبي مارينا</li><li>على بعد مسافة سيرًا على الأقدام من مارينا ووك</li><li>مرافق محيطة متكاملة</li></ul>
+            <ul class="highlights-list hidden" id="highlights-zh"><li>拎包入住，设施齐全</li><li>紧邻DMCC地铁站</li><li>位于迪拜码头核心地段</li><li>步行可达Marina Walk</li><li>周边配套完善</li></ul>
         </div>
 
         <div class="map-card">
-            <a href="https://www.google.com/maps/search/?api=1&query=Marina+Residence+Tower+B+Dubai+Marina+Dubai" target="_blank" class="map-btn">
-                <span style="font-size:20px;">🗺️</span>
-                <span id="map-label">View Location on Google Maps</span>
-                <span style="margin-left:auto;">→</span>
+            <a href="https://www.openstreetmap.org/search?query=Marina+Residence+Tower+B+Dubai+Marina+Dubai" target="_blank" class="map-link">
+                <span>🗺️</span>
+                <span id="map-label">View on OpenStreetMap</span>
+                <span class="map-arrow">→</span>
             </a>
         </div>
 
         <div class="footer" id="footer-text">Powered by OK.com · Dubai Real Estate</div>
     </div>
 
-    <!-- CTA -->
     <div class="cta-bar">
         <div class="cta-inner">
-            <a id="wa-btn" href="https://wa.me/8615232754768?text=Hi,%20I'm%20interested%20in%20Marina%20Residence%20Tower%20B%20-%201室1厅2卫" class="whatsapp-btn" target="_blank">
+            <a id="wa-btn" href="https://wa.me/8615232754768?text=Hi%2C%20I'm%20interested%20in%20Marina%20Residence%20Tower%20B" class="wa-btn" target="_blank">
                 <span style="font-size:20px;">💬</span>
                 <span id="cta-text">Contact Us to View</span>
             </a>
@@ -181,84 +164,89 @@
     </div>
 
     <script>
-        // ---- Slideshow ----
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots   = document.querySelectorAll('.dot');
-        const countEl= document.querySelector('.image-count');
-
-        function updateSlide() {
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-            if (slides[currentSlide]) slides[currentSlide].classList.add('active');
-            if (dots[currentSlide])   dots[currentSlide].classList.add('active');
-            if (countEl) countEl.textContent = (currentSlide+1) + ' / ' + slides.length;
+        let currentSlide=0;
+        const slides=document.querySelectorAll('.slide');
+        const dots=document.querySelectorAll('.dot');
+        const countEl=document.querySelector('.image-count');
+        function updateSlide(){
+            slides.forEach(s=>s.classList.remove('active'));
+            dots.forEach(d=>d.classList.remove('active'));
+            if(slides[currentSlide])slides[currentSlide].classList.add('active');
+            if(dots[currentSlide])dots[currentSlide].classList.add('active');
+            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slides.length;
         }
-        function changeSlide(dir) { currentSlide = (currentSlide+dir+slides.length)%slides.length; updateSlide(); }
-        function goToSlide(n)     { currentSlide = n; updateSlide(); }
+        function changeSlide(dir){currentSlide=(currentSlide+dir+slides.length)%slides.length;updateSlide();}
+        function goToSlide(n){currentSlide=n;updateSlide();}
 
-        // ---- Language ----
-        const i18n = {
-            en: {
-                dir: 'ltr',
-                catLabel: 'Rental',
-                priceLabel: 'ASKING PRICE',
-                labelUnit: 'Unit Type',
-                labelSize: 'Sqft',
-                titleHighlights: 'Property Highlights',
-                mapLabel: 'View Location on Google Maps',
-                mapHint: 'View on Map →',
-                ctaText: 'Contact Us to View',
-                waLink: 'https://wa.me/8615232754768?text=Hi,%20I'm%20interested%20in%20Marina%20Residence%20Tower%20B%20-%201室1厅2卫',
-                footer: 'Powered by OK.com · Dubai Real Estate',
+        const data={
+            en:{
+                dir:'ltr', cat:'Rental',
+                community:'Marina Residence Tower B',
+                loc:'Dubai Marina · Dubai Marina',
+                priceLabel:'ASKING PRICE',
+                unitValue:'1 Bed 1 Living 2 Bath',
+                unitLabel:'Unit Type', sizeLabel:'Sqft',
+                highlightsTitle:'Property Highlights',
+                mapLabel:'View on OpenStreetMap',
+                ctaText:'Contact Us to View',
+                waLink:'https://wa.me/8615232754768?text=Hi%2C%20I'm%20interested%20in%20Marina%20Residence%20Tower%20B',
+                footer:'Powered by OK.com · Dubai Real Estate',
             },
-            ar: {
-                dir: 'rtl',
-                catLabel: 'إيجار',
-                priceLabel: 'السعر المطلوب',
-                labelUnit: 'نوع الوحدة',
-                labelSize: 'قدم مربع',
-                titleHighlights: 'مميزات العقار',
-                mapLabel: 'عرض الموقع على خرائط Google',
-                mapHint: '← عرض على الخريطة',
-                ctaText: 'تواصل لمعاينة العقار',
-                waLink: 'https://wa.me/8615232754768?text=مرحباً،%20أنا%20مهتم%20بـ%20Marina%20Residence%20Tower%20B%20-%201室1厅2卫',
-                footer: 'بدعم من OK.com · عقارات دبي',
+            ar:{
+                dir:'rtl', cat:'إيجار',
+                community:'مارينا ريزيدنس تاور بي',
+                loc:'دبي مارينا · دبي مارينا',
+                priceLabel:'السعر المطلوب',
+                unitValue:'غرفة نوم واحدة وصالة وحمامين',
+                unitLabel:'نوع الوحدة', sizeLabel:'قدم مربع',
+                highlightsTitle:'مميزات العقار',
+                mapLabel:'عرض على OpenStreetMap',
+                ctaText:'تواصل لمعاينة العقار',
+                waLink:'https://wa.me/8615232754768?text=مرحباً%2C%20أنا%20مهتم%20بـ%20مارينا%20ريزيدنس%20تاور%20بي',
+                footer:'بدعم من OK.com · عقارات دبي',
             },
-            zh: {
-                dir: 'ltr',
-                catLabel: '租房',
-                priceLabel: '参考价格',
-                labelUnit: '户型',
-                labelSize: '平方英尺',
-                titleHighlights: '房源特点',
-                mapLabel: '在 Google 地图上查看位置',
-                mapHint: '查看地图 →',
-                ctaText: '联系看房',
-                waLink: 'https://wa.me/8615232754768?text=你好，我对Marina%20Residence%20Tower%20B%201室1厅2卫感兴趣',
-                footer: '由 OK.com 提供支持 · 迪拜房产',
+            zh:{
+                dir:'ltr', cat:'租房',
+                community:'Marina Residence Tower B',
+                loc:'Dubai Marina · Dubai Marina',
+                priceLabel:'参考价格',
+                unitValue:'1室1厅2卫',
+                unitLabel:'户型', sizeLabel:'平方英尺',
+                highlightsTitle:'房源特点',
+                mapLabel:'在 OpenStreetMap 查看位置',
+                ctaText:'联系看房',
+                waLink:'https://wa.me/8615232754768?text=你好，我对Marina Residence Tower B感兴趣',
+                footer:'由 OK.com 提供支持 · 迪拜房产',
             },
         };
 
-        function setLang(lang) {
-            const t = i18n[lang];
-            document.getElementById('page-body').className = lang === 'ar' ? 'rtl' : '';
-            document.querySelector('html').setAttribute('lang', lang === 'ar' ? 'ar' : lang === 'zh' ? 'zh-CN' : 'en');
-            document.getElementById('cat-badge').textContent       = t.catLabel;
-            document.getElementById('price-label').textContent     = t.priceLabel;
-            document.getElementById('label-unit').textContent      = t.labelUnit;
-            const ls = document.getElementById('label-size');
-            if (ls) ls.textContent = t.labelSize;
-            const th = document.getElementById('title-highlights');
-            if (th) th.textContent = t.titleHighlights;
-            document.getElementById('map-label').textContent       = t.mapLabel;
-            document.getElementById('map-hint').textContent        = t.mapHint;
-            document.getElementById('cta-text').textContent        = t.ctaText;
-            document.getElementById('wa-btn').href                 = t.waLink;
-            document.getElementById('footer-text').textContent     = t.footer;
+        function setLang(lang, btn){
+            const t=data[lang];
+            document.getElementById('page-body').className=lang==='ar'?'rtl':'';
+            document.querySelector('html').lang=lang==='ar'?'ar':lang==='zh'?'zh-CN':'en';
 
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            document.getElementById('cat-badge').textContent=t.cat;
+            document.getElementById('community-name').textContent=t.community;
+            document.getElementById('loc-text').textContent=t.loc;
+            document.getElementById('price-label').textContent=t.priceLabel;
+            document.getElementById('unit-value').textContent=t.unitValue;
+            document.getElementById('unit-label').textContent=t.unitLabel;
+            const sl=document.getElementById('size-label');
+            if(sl)sl.textContent=t.sizeLabel;
+            const ht=document.getElementById('highlights-title');
+            if(ht)ht.textContent=t.highlightsTitle;
+            document.getElementById('map-label').textContent=t.mapLabel;
+            document.getElementById('cta-text').textContent=t.ctaText;
+            document.getElementById('wa-btn').href=t.waLink;
+            document.getElementById('footer-text').textContent=t.footer;
+
+            ['en','ar','zh'].forEach(l=>{
+                const el=document.getElementById('highlights-'+l);
+                if(el)el.className='highlights-list'+(l===lang?'':' hidden');
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+            if(btn)btn.classList.add('active');
         }
     </script>
 </body>
