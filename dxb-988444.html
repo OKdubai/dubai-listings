@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beach Isle 2 - OK.com</title>
+    <meta property="og:title" content="Beach Isle 2 | OK.com">
+    <meta property="og:description" content="1 Bed 1 Living 1 Bath in Emaar Beachfront | AED 10,000">
+    <meta property="og:image" content="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261288/dubai_listings/vblkq2aqeuzxodj510w7.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;}
+        body.rtl{direction:rtl;font-family:'Noto Sans Arabic',-apple-system,sans-serif;}
+        body.rtl .price-card{border-left:none;border-right:4px solid #1e3a5f;}
+        body.rtl .prev{left:auto;right:10px;}
+        body.rtl .next{right:auto;left:10px;}
+        .header{background:#1e3a5f;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;}
+        .brand{color:white;font-size:20px;font-weight:700;flex-shrink:0;}
+        .brand span{color:#f59e0b;}
+        .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+        .cat-badge{background:#10b981;color:white;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+        .lang-switcher{display:flex;gap:3px;}
+        .lang-btn{background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600;transition:all 0.2s;}
+        .lang-btn.active{background:white;color:#1e3a5f;border-color:white;}
+
+        .slideshow{position:relative;width:100%;height:290px;background:#0f172a;overflow:hidden;}
+        @media(min-width:768px){.slideshow{height:450px;}}
+        .slide{display:none;width:100%;height:100%;}
+        .slide.active{display:block;}
+        .slide img{width:100%;height:100%;object-fit:cover;}
+        .no-image{display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 14px;cursor:pointer;font-size:16px;border-radius:4px;z-index:10;}
+        .prev{left:10px;} .next{right:10px;}
+        .dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+        .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.3s;}
+        .dot.active{background:white;}
+        .image-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.6);color:white;padding:3px 8px;border-radius:10px;font-size:12px;}
+
+        .container{max-width:800px;margin:0 auto;padding:16px 16px 90px;}
+        .title-section{margin:16px 0 12px;}
+        .community-name{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2;margin-bottom:6px;}
+        .location{display:flex;align-items:center;gap:6px;color:#64748b;font-size:13px;text-decoration:none;}
+        .location:hover{color:#3b82f6;}
+
+        .price-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border-left:4px solid #1e3a5f;}
+        .price-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+        .price-value{font-size:28px;font-weight:800;color:#1e3a5f;}
+        .price-currency{font-size:14px;font-weight:600;color:#64748b;margin-right:4px;}
+
+        .specs-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;}
+        .spec-item{display:flex;align-items:center;gap:10px;}
+        .spec-icon{font-size:22px;}
+        .spec-value{font-size:16px;font-weight:700;color:#0f172a;}
+        .spec-label{font-size:11px;color:#94a3b8;}
+
+        .highlights-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .card-title{font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+        .highlights-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#334155;line-height:1.5;}
+        .highlights-list li::before{content:"✓";color:#10b981;font-weight:700;font-size:14px;flex-shrink:0;}
+
+        .cta-bar{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);z-index:100;}
+        .cta-inner{max-width:800px;margin:0 auto;}
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:white;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;text-decoration:none;width:100%;white-space:nowrap;}
+        .wa-btn:hover{background:#1da851;}
+
+        .footer{text-align:center;padding:16px;color:#94a3b8;font-size:11px;}
+        .hidden{display:none!important;}
+    </style>
+</head>
+<body id="page-body">
+    <div class="header">
+        <div class="brand">OK<span>.</span>com</div>
+        <div class="header-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+                <button class="lang-btn" onclick="setLang('ar',this)">عر</button>
+                <button class="lang-btn" onclick="setLang('zh',this)">中</button>
+            </div>
+            <div id="cat-badge" class="cat-badge">Rental</div>
+        </div>
+    </div>
+
+    <div class="slideshow">
+        <div class="slide active"><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261288/dubai_listings/vblkq2aqeuzxodj510w7.jpg" alt="Property 1"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261289/dubai_listings/oqq7jbqp2ij0izxcrw7c.jpg" alt="Property 2"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261290/dubai_listings/ajgpmugilgecxxcp22gz.jpg" alt="Property 3"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261291/dubai_listings/bq5zujqt9wx511jyzpvc.jpg" alt="Property 4"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261291/dubai_listings/laajugt7eqwprg4gern7.jpg" alt="Property 5"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261292/dubai_listings/l3dodxjkzhxtnya9e0fz.jpg" alt="Property 6"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261293/dubai_listings/bxj1gn9ipzlsmgxjhios.jpg" alt="Property 7"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261294/dubai_listings/omobhbigluht0wrbsewz.jpg" alt="Property 8"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261295/dubai_listings/rxaer4lbztu7s0km4pcu.jpg" alt="Property 9"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261295/dubai_listings/n6im6h7lhc1grfulybl3.jpg" alt="Property 10"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261296/dubai_listings/zispxj8kssv75tf8dorf.jpg" alt="Property 11"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261297/dubai_listings/z15yikxtjzlgrwov16oz.jpg" alt="Property 12"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261298/dubai_listings/rhztu4nx3h0adz9pqafq.jpg" alt="Property 13"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261299/dubai_listings/wwuf2etihbi0h2zlmdft.jpg" alt="Property 14"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261300/dubai_listings/t7a0qhbcta3pxupy1kta.jpg" alt="Property 15"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261300/dubai_listings/pljudaw4pnukcmueywn8.jpg" alt="Property 16"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261301/dubai_listings/l27gkfjjvz1ini11erqh.jpg" alt="Property 17"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261303/dubai_listings/gwsj7zvxzf38996fmgvf.jpg" alt="Property 18"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261304/dubai_listings/mk0hiv3zwhdzwt3rzcpw.jpg" alt="Property 19"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261305/dubai_listings/l96lvv7pci6o5v9qeslz.jpg" alt="Property 20"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261306/dubai_listings/aiuq9qk3mnzjki7mow3j.jpg" alt="Property 21"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261306/dubai_listings/m5ywrvibrlcqdzwjidjl.jpg" alt="Property 22"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261307/dubai_listings/xsjj2sw5cpa0vyblfzzi.jpg" alt="Property 23"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261308/dubai_listings/f2zzlxdfgfr9fdvfftcl.jpg" alt="Property 24"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261309/dubai_listings/jnvnzwlywgrtdfxnfh9w.jpg" alt="Property 25"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261309/dubai_listings/mkvmptvdhfudmkvfn0ma.jpg" alt="Property 26"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261310/dubai_listings/dldyvqbhm2xg9uadokyr.jpg" alt="Property 27"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261311/dubai_listings/prkxxxcoxdqok7kab1eb.jpg" alt="Property 28"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261312/dubai_listings/riaejwqaqtprhpacrw1o.jpg" alt="Property 29"></div>
+<div class="slide "><img src="https://res.cloudinary.com/dgw64gcy2/image/upload/v1774261313/dubai_listings/lglqznmrlb4vhzfgwp5l.jpg" alt="Property 30"></div>
+
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button><button class="next" onclick="changeSlide(1)">&#10095;</button>
+        <div class="dots"><span class="dot active" onclick="goToSlide(0)"></span>
+<span class="dot " onclick="goToSlide(1)"></span>
+<span class="dot " onclick="goToSlide(2)"></span>
+<span class="dot " onclick="goToSlide(3)"></span>
+<span class="dot " onclick="goToSlide(4)"></span>
+<span class="dot " onclick="goToSlide(5)"></span>
+<span class="dot " onclick="goToSlide(6)"></span>
+<span class="dot " onclick="goToSlide(7)"></span>
+<span class="dot " onclick="goToSlide(8)"></span>
+<span class="dot " onclick="goToSlide(9)"></span>
+<span class="dot " onclick="goToSlide(10)"></span>
+<span class="dot " onclick="goToSlide(11)"></span>
+<span class="dot " onclick="goToSlide(12)"></span>
+<span class="dot " onclick="goToSlide(13)"></span>
+<span class="dot " onclick="goToSlide(14)"></span>
+<span class="dot " onclick="goToSlide(15)"></span>
+<span class="dot " onclick="goToSlide(16)"></span>
+<span class="dot " onclick="goToSlide(17)"></span>
+<span class="dot " onclick="goToSlide(18)"></span>
+<span class="dot " onclick="goToSlide(19)"></span>
+<span class="dot " onclick="goToSlide(20)"></span>
+<span class="dot " onclick="goToSlide(21)"></span>
+<span class="dot " onclick="goToSlide(22)"></span>
+<span class="dot " onclick="goToSlide(23)"></span>
+<span class="dot " onclick="goToSlide(24)"></span>
+<span class="dot " onclick="goToSlide(25)"></span>
+<span class="dot " onclick="goToSlide(26)"></span>
+<span class="dot " onclick="goToSlide(27)"></span>
+<span class="dot " onclick="goToSlide(28)"></span>
+<span class="dot " onclick="goToSlide(29)"></span>
+</div>
+        <div class="image-count">1 / 30</div>
+    </div>
+
+    <div class="container">
+        <div class="title-section">
+            <div class="community-name" id="community-name">Beach Isle 2</div>
+            <div class="location">
+                <span>📍</span>
+                <span id="loc-text">Emaar Beachfront · Emaar Beachfront</span>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-label" id="price-label">ASKING PRICE</div>
+            <div class="price-value"><span class="price-currency">AED</span>10,000</div>
+        </div>
+
+        <div class="specs-card">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">🚪</span>
+                    <div>
+                        <div class="spec-value" id="unit-value">1 Bed 1 Living 1 Bath</div>
+                        <div class="spec-label" id="unit-label">Unit Type</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        
+        <div class="highlights-card">
+            <div class="card-title" id="highlights-title">Property Highlights</div>
+            <ul class="highlights-list" id="highlights-en"><li>Luxurious Beachfront Living</li><li>Balcony Directly Facing Ain Dubai</li><li>Exclusive Resident Beach Access</li><li>Fully Equipped Kitchen</li><li>Sky Pool with Sea View</li></ul>
+            <ul class="highlights-list hidden" id="highlights-ar"><li>حياة شاطئية فاخرة</li><li>شرفة تطل مباشرة على عين دبي</li><li>وصول خاص للشاطئ للمقيمين</li><li>مطبخ مجهز بالكامل</li><li>مسبح سماوي بإطلالة بحرية</li></ul>
+            <ul class="highlights-list hidden" id="highlights-zh"><li>豪华海滨生活</li><li>阳台直面迪拜眼</li><li>住户专属沙滩通道</li><li>设施齐全厨房</li><li>空中泳池海景</li></ul>
+        </div>
+
+        <div class="footer" id="footer-text">Powered by OK.com · Dubai Real Estate</div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="cta-inner">
+            <a id="wa-btn" href="https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20Beach%20Isle%202%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-988444.html" class="wa-btn" target="_blank">
+                <span style="font-size:20px;">💬</span>
+                <span id="cta-text">Contact Us to View</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var currentSlide=0;
+        var slideEls=document.querySelectorAll('.slide');
+        var dotEls=document.querySelectorAll('.dot');
+        var countEl=document.querySelector('.image-count');
+        function updateSlide(){
+            slideEls.forEach(function(s){s.classList.remove('active');});
+            dotEls.forEach(function(d){d.classList.remove('active');});
+            if(slideEls[currentSlide])slideEls[currentSlide].classList.add('active');
+            if(dotEls[currentSlide])dotEls[currentSlide].classList.add('active');
+            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slideEls.length;
+        }
+        function changeSlide(dir){currentSlide=(currentSlide+dir+slideEls.length)%slideEls.length;updateSlide();}
+        function goToSlide(n){currentSlide=n;updateSlide();}
+
+        const data={
+            en:{
+                dir:'ltr', cat:'Rental',
+                community:'Beach Isle 2',
+                loc:'Emaar Beachfront · Emaar Beachfront',
+                priceLabel:'ASKING PRICE',
+                unitValue:'1 Bed 1 Living 1 Bath',
+                unitLabel:'Unit Type', sizeLabel:'Sqft',
+                highlightsTitle:'Property Highlights',
+                ctaText:'Contact Us to View',
+                waLink:'https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20Beach%20Isle%202%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-988444.html',
+                footer:'Powered by OK.com · Dubai Real Estate',
+            },
+            ar:{
+                dir:'rtl', cat:'إيجار',
+                community:'بيتش آيل 2',
+                loc:'إعمار بيتش فرونت · إعمار بيتش فرونت',
+                priceLabel:'السعر المطلوب',
+                unitValue:'1 غرفة 1 صالة 1 حمام',
+                unitLabel:'نوع الوحدة', sizeLabel:'قدم مربع',
+                highlightsTitle:'مميزات العقار',
+                ctaText:'تواصل لمعاينة العقار',
+                waLink:'https://wa.me/8613611372696?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D8%A8%D9%80%20%D8%A8%D9%8A%D8%AA%D8%B4%20%D8%A2%D9%8A%D9%84%202%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-988444.html',
+                footer:'بدعم من OK.com · عقارات دبي',
+            },
+            zh:{
+                dir:'ltr', cat:'租房',
+                community:'Beach Isle 2',
+                loc:'Emaar Beachfront · Emaar Beachfront',
+                priceLabel:'参考价格',
+                unitValue:'1室1厅1卫',
+                unitLabel:'户型', sizeLabel:'平方英尺',
+                highlightsTitle:'房源特点',
+                ctaText:'联系看房',
+                waLink:'https://wa.me/8613611372696?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E5%AF%B9Beach%20Isle%202%E6%84%9F%E5%85%B4%E8%B6%A3%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-988444.html',
+                footer:'由 OK.com 提供支持 · 迪拜房产',
+            },
+        };
+
+        function setLang(lang, btn){
+            const t=data[lang];
+            document.getElementById('page-body').className=lang==='ar'?'rtl':'';
+            document.querySelector('html').lang=lang==='ar'?'ar':lang==='zh'?'zh-CN':'en';
+
+            document.getElementById('cat-badge').textContent=t.cat;
+            document.getElementById('community-name').textContent=t.community;
+            document.getElementById('loc-text').textContent=t.loc;
+            document.getElementById('price-label').textContent=t.priceLabel;
+            document.getElementById('unit-value').textContent=t.unitValue;
+            document.getElementById('unit-label').textContent=t.unitLabel;
+            const sl=document.getElementById('size-label');
+            if(sl)sl.textContent=t.sizeLabel;
+            const ht=document.getElementById('highlights-title');
+            if(ht)ht.textContent=t.highlightsTitle;
+            document.getElementById('cta-text').textContent=t.ctaText;
+            document.getElementById('wa-btn').href=t.waLink;
+            document.getElementById('footer-text').textContent=t.footer;
+
+            ['en','ar','zh'].forEach(l=>{
+                const el=document.getElementById('highlights-'+l);
+                if(el)el.className='highlights-list'+(l===lang?'':' hidden');
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+            if(btn)btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
