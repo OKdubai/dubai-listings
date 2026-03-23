@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condor Marina Star - OK.com</title>
+    <meta property="og:title" content="Condor Marina Star | OK.com">
+    <meta property="og:description" content="1 Bed 1 Living 1 Bath in Dubai Marina | AED 8,000">
+    <meta property="og:image" content="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/I9kCJ-2LK3Lo0OyO2s2Meg/LFQ7pK4rf_h4pCpoCsIWUILmkeuo7yGltN5Ov-5wOY3RRP5xzAjzjviYhcD2VOoxaZUyla8HUpVOEkppnfCIvT8nhOTNnk7_l_-ZIr8dE9jQ_CCzDiA8BiGQDLpE3_9SQjU8d4TiGBznWz6gBwvg4Q/3GK5WmqkaERj-IPPeSPpHq_eM5-dKgLdaPCkU7ovY10">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;}
+        body.rtl{direction:rtl;font-family:'Noto Sans Arabic',-apple-system,sans-serif;}
+        body.rtl .price-card{border-left:none;border-right:4px solid #1e3a5f;}
+        body.rtl .prev{left:auto;right:10px;}
+        body.rtl .next{right:auto;left:10px;}
+        .header{background:#1e3a5f;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;}
+        .brand{color:white;font-size:20px;font-weight:700;flex-shrink:0;}
+        .brand span{color:#f59e0b;}
+        .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+        .cat-badge{background:#10b981;color:white;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+        .lang-switcher{display:flex;gap:3px;}
+        .lang-btn{background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600;transition:all 0.2s;}
+        .lang-btn.active{background:white;color:#1e3a5f;border-color:white;}
+
+        .slideshow{position:relative;width:100%;height:290px;background:#0f172a;overflow:hidden;}
+        @media(min-width:768px){.slideshow{height:450px;}}
+        .slide{display:none;width:100%;height:100%;}
+        .slide.active{display:block;}
+        .slide img{width:100%;height:100%;object-fit:cover;}
+        .no-image{display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 14px;cursor:pointer;font-size:16px;border-radius:4px;z-index:10;}
+        .prev{left:10px;} .next{right:10px;}
+        .dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+        .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.3s;}
+        .dot.active{background:white;}
+        .image-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.6);color:white;padding:3px 8px;border-radius:10px;font-size:12px;}
+
+        .container{max-width:800px;margin:0 auto;padding:16px 16px 90px;}
+        .title-section{margin:16px 0 12px;}
+        .community-name{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2;margin-bottom:6px;}
+        .location{display:flex;align-items:center;gap:6px;color:#64748b;font-size:13px;text-decoration:none;}
+        .location:hover{color:#3b82f6;}
+
+        .price-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border-left:4px solid #1e3a5f;}
+        .price-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+        .price-value{font-size:28px;font-weight:800;color:#1e3a5f;}
+        .price-currency{font-size:14px;font-weight:600;color:#64748b;margin-right:4px;}
+
+        .specs-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;}
+        .spec-item{display:flex;align-items:center;gap:10px;}
+        .spec-icon{font-size:22px;}
+        .spec-value{font-size:16px;font-weight:700;color:#0f172a;}
+        .spec-label{font-size:11px;color:#94a3b8;}
+
+        .highlights-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .card-title{font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+        .highlights-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#334155;line-height:1.5;}
+        .highlights-list li::before{content:"✓";color:#10b981;font-weight:700;font-size:14px;flex-shrink:0;}
+
+        .cta-bar{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);z-index:100;}
+        .cta-inner{max-width:800px;margin:0 auto;}
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:white;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;text-decoration:none;width:100%;white-space:nowrap;}
+        .wa-btn:hover{background:#1da851;}
+
+        .footer{text-align:center;padding:16px;color:#94a3b8;font-size:11px;}
+        .hidden{display:none!important;}
+    </style>
+</head>
+<body id="page-body">
+    <div class="header">
+        <div class="brand">OK<span>.</span>com</div>
+        <div class="header-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+                <button class="lang-btn" onclick="setLang('ar',this)">عر</button>
+                <button class="lang-btn" onclick="setLang('zh',this)">中</button>
+            </div>
+            <div id="cat-badge" class="cat-badge">Rental</div>
+        </div>
+    </div>
+
+    <div class="slideshow">
+        <div class="slide active"><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/I9kCJ-2LK3Lo0OyO2s2Meg/LFQ7pK4rf_h4pCpoCsIWUILmkeuo7yGltN5Ov-5wOY3RRP5xzAjzjviYhcD2VOoxaZUyla8HUpVOEkppnfCIvT8nhOTNnk7_l_-ZIr8dE9jQ_CCzDiA8BiGQDLpE3_9SQjU8d4TiGBznWz6gBwvg4Q/3GK5WmqkaERj-IPPeSPpHq_eM5-dKgLdaPCkU7ovY10" alt="Property 1"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/lQVUpY-UNNORHRzpoCYWvg/KP_As2xgEr8aR4nmWv_Y72QmAgPhZ1kIQxilVAs1gniumlQfQ_j3XAJGhL7wJUhBD7cwzrCqxA5nQG8f2amFSpDG_P1NoSGlJhXM0VUBW_n7Mn_g0mcKu3Wk3P4JWto6XG6eBj4YeFhICFQ70xU5KA/lyZi5OT3HzxT5A3A17e64MftekFgionQPlJtFdIA4Is" alt="Property 2"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/zPKZp22-T3WDwuNs0nck2w/iHHg-mRqH-Ggmdn6QzjMiRIYWKVxS67LYcjnaQZcbTAR9CIVUh-KrJYEy8cFTOMiJcjiXHPJ6xnveDe0K-qB2CoT5JVc42pAdmf8PDiDi8lmi6PQppRQAuRgU3JPaCxY4l1TyuRCfJk94k6Hj1G6Hg/8hjtHl2c1dqw8KW8Iy7PRe2x68xM6eePE6cK3XOqOgs" alt="Property 3"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/qHk06w8kg-1S5lpw4hKPTA/8JEGFgxe2W2Ee_7nbL1xlKtOfO44FCNcrCZ8AXsZIksE2yQEIgEOvOYHUORGVzkQLd4TOLu6aKGC5aGxtD2uWyEkjMEDVpaHs_fsp4OUc04ym-N9T2Ycl1KeZkwCceSSQt1ZF9khZ2czI8WknP-Uqw/UOHGZ1oYnJfzAAnycw3QNcjRqtAI1dp3Hf3T7MUiVHw" alt="Property 4"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/V9Di2Mr-Vn7TjqSyx06v7w/V64w_UCgMy_pwRyPO6oG1t5g_ravKRQtmvEscw5IpSogUovAzh_l2qncVcvPxq02klieNp_XFsLlGeACuo2i549snEsUdjfZtLQmg4PwuWOY0mAEfi36uUC8N00BZUNQImDLe4fFkjKKXnCih0_aEg/18msbQ5plEIfKghfl2DczjhGNc90QLDbF_NZkeQojfo" alt="Property 5"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/gP2vSieJmB5agHL-7L1I_w/M7I31IMAO0Nh0gKsYXHrd2eVCh9Zl0UZzftO7a4ty6f1OyBytj-aOuHeX4WazOuumRdvyFeIjaKfodxU7gAdqI_oURl3POMtfRzb0fgMDtTvJYYnZOPaYVGWLnew14VM77obLNSVLP8Sv13Nfb59rw/SF9oNp6Z-KdIU88LFinG06027dkPSm9NK7qBeeGHPaQ" alt="Property 6"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/g5Dd727WDj4j_AswVv-Gfw/-JSTU8XyrJUUvrBrrhpBtUlsTqdjKZFZOTaikc3z7-rif-If78Ggm1-7wKtE5gUyKyq2odNKPOTo_NChD2xsvVpEcmOf7kozEZriJe-XYfpY5BPsm1vgdDg60qb_dyl67NWHyV3XOCK1RD-TBqjslg/DzEueJzRMOxFmMRsoOiLsFuI4601spUXb7K5oMmkY1Y" alt="Property 7"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/yLeFk3rhjDwDxmC-ENClxQ/D4tNIskqP5HU9V2pjvZSoZ4ZWzpzpM4KgkotFREr4DjHSiTOEb_9yZEoqs6RWyfctpwrBmtU_bZZQBCulk-4dzx0G1eRKUjSQbGPBUmItOzow2-a9WAaBOJvzhJ99XOXNHzNFKLX3UtRa-6_SLuLMg/Ji29KctCS466FEXZilVEz5-hafxe4MICm4meUksyVfs" alt="Property 8"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/F4IL31AZBQd9tPI8cC3hkw/yFIeAfquaqzcAQDvj1cySpI_g8c191qWgEo6B5H8rywzXlR0KzqrzPWMbeEUTz_GCNDJYzeJFQGbnRCpkJCuPL5bTU18z0KPRZpEJ1205x1VYKAgntNm6DNksfxYaCRzV-o1NTq-miFPQIl_B5bspQ/RBYMxRbAFrWi-Qs2RWI-V19UI_jv2E9onY9V26Tqk9I" alt="Property 9"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/ZIi0kVzFtcahsh-vHuUozA/k1Rponm3thLfOZSZokO0b-OHRZqI76_j3kUcAG_zR6uqMgH2k3l1QpO3T864hIB2q7YQPSV6SUXGJtp4JoUEfuVL8f43ohLn80U7bPp0zhcFIfPXH3n8JgtqmGcbV87m4mNniUOEU6ozGGNoUZ3p2w/72aD0UkZbJVoHakff28d6iDa5NsAxQMHV6MrAx8_rfQ" alt="Property 10"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/VFiMaGhwpZNmSrO-Q4gkJA/A1E5JBEy6ZdDMux0V6VpyXWtFNYVLlfYHB6hSfw9vcHcbONX9YhmdtBgRQ6wYFsD6Z_IAZuyogrqUuV8cU9cW85R72JERVXtJEnf2s-K_UqFu21ABbBy7LfeemFILejuQGeIeHw3cwO1ujEchqDFLA/AspfDu-LWqAgcCYWwk3oKhbOOAUnb381hOg5-0SwzHY" alt="Property 11"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/QZhhSGgUasObNqB_RhIA9A/hrKaF2mr9T-YxCCLDxrqiaPip4HMk26998fZnR1dOsTTi9fSpHRBWIzGB6x_c2nDIwwLDLlSWdCpjJrCnW_DRaXkZf1D7nrSuztK7RO-345BFGH_hcSReMyNPo6LHj_v66-NNLAb3Jw0n8pwa0r3fQ/QFueNNDe0MuD0VPG0UDbg30xIUKYGDKV6Zf8_geZoyw" alt="Property 12"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/Z8DoWrYn1x-AKTn0QKFMPg/2MOmzhv6xKTGqEFuROIecb6boKMRkaWrBgqN56kZzW6GgIXqWMKnqg2i6n5jSsAZ9yl0VNgu7_PBCjygO11jOkvAoxiTIyQYIMbgQpiAtKhic0uOhpPC33tIzyO4f5wECgnBijGp0z1m0bFIfMK2qQ/29sK84RQSv2qXmI7l9Mhv2hq660u1ewKnTYvV_nd-BU" alt="Property 13"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774267200000/YXOiryz1ePZYtZx4Xp_JOQ/JwgNVrT6iFFKUjQ0vKx24P3yETJyILHa0v5eS0s0xd8v1MG03DpclaUZtd9PDH_k-oJnqwTPlsrE21HmgDupkW3BTcwQWN0fiQSQYYGeAy80mJ6SugvcX_L_IaCFNVTdNqUhAcJOEtm02Me-eOsaeQ/fpZxjE9gPDuN69_Jf_nFMTM0LYQHlp1xti4bLD0ACUs" alt="Property 14"></div>
+
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button><button class="next" onclick="changeSlide(1)">&#10095;</button>
+        <div class="dots"><span class="dot active" onclick="goToSlide(0)"></span>
+<span class="dot " onclick="goToSlide(1)"></span>
+<span class="dot " onclick="goToSlide(2)"></span>
+<span class="dot " onclick="goToSlide(3)"></span>
+<span class="dot " onclick="goToSlide(4)"></span>
+<span class="dot " onclick="goToSlide(5)"></span>
+<span class="dot " onclick="goToSlide(6)"></span>
+<span class="dot " onclick="goToSlide(7)"></span>
+<span class="dot " onclick="goToSlide(8)"></span>
+<span class="dot " onclick="goToSlide(9)"></span>
+<span class="dot " onclick="goToSlide(10)"></span>
+<span class="dot " onclick="goToSlide(11)"></span>
+<span class="dot " onclick="goToSlide(12)"></span>
+<span class="dot " onclick="goToSlide(13)"></span>
+</div>
+        <div class="image-count">1 / 14</div>
+    </div>
+
+    <div class="container">
+        <div class="title-section">
+            <div class="community-name" id="community-name">Condor Marina Star</div>
+            <div class="location">
+                <span>📍</span>
+                <span id="loc-text">Dubai Marina · Dubai Marina</span>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-label" id="price-label">ASKING PRICE</div>
+            <div class="price-value"><span class="price-currency">AED</span>8,000</div>
+        </div>
+
+        <div class="specs-card">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">🚪</span>
+                    <div>
+                        <div class="spec-value" id="unit-value">1 Bed 1 Living 1 Bath</div>
+                        <div class="spec-label" id="unit-label">Unit Type</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        
+        <div class="highlights-card">
+            <div class="card-title" id="highlights-title">Property Highlights</div>
+            <ul class="highlights-list" id="highlights-en"><li>With Balcony and Spacious Terrace</li><li>Ready-to-Move-In Apartment</li><li>Prime Location in Dubai Marina</li><li>Facilities Include Pool and Gym</li><li>Close to Metro, Restaurants, and Shops</li></ul>
+            <ul class="highlights-list hidden" id="highlights-ar"><li>مع شرفة وتراس واسع</li><li>شقة جاهزة للسكن</li><li>موقع متميز في دبي مارينا</li><li>المرافق تشمل مسبح وصالة ألعاب رياضية</li><li>قريب من المترو والمطاعم والمتاجر</li></ul>
+            <ul class="highlights-list hidden" id="highlights-zh"><li>带阳台和宽敞露台</li><li>可拎包入住的公寓</li><li>迪拜码头核心地段</li><li>提供泳池健身房等设施</li><li>近地铁、餐厅、商店</li></ul>
+        </div>
+
+        <div class="footer" id="footer-text">Powered by OK.com · Dubai Real Estate</div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="cta-inner">
+            <a id="wa-btn" href="https://wa.me/8613611372696?text=Hi%2C%20I'm%20interested%20in%20Condor%20Marina%20Star" class="wa-btn" target="_blank">
+                <span style="font-size:20px;">💬</span>
+                <span id="cta-text">Contact Us to View</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var currentSlide=0;
+        var slideEls=document.querySelectorAll('.slide');
+        var dotEls=document.querySelectorAll('.dot');
+        var countEl=document.querySelector('.image-count');
+        function updateSlide(){
+            slideEls.forEach(function(s){s.classList.remove('active');});
+            dotEls.forEach(function(d){d.classList.remove('active');});
+            if(slideEls[currentSlide])slideEls[currentSlide].classList.add('active');
+            if(dotEls[currentSlide])dotEls[currentSlide].classList.add('active');
+            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slideEls.length;
+        }
+        function changeSlide(dir){currentSlide=(currentSlide+dir+slideEls.length)%slideEls.length;updateSlide();}
+        function goToSlide(n){currentSlide=n;updateSlide();}
+
+        const data={
+            en:{
+                dir:'ltr', cat:'Rental',
+                community:'Condor Marina Star',
+                loc:'Dubai Marina · Dubai Marina',
+                priceLabel:'ASKING PRICE',
+                unitValue:'1 Bed 1 Living 1 Bath',
+                unitLabel:'Unit Type', sizeLabel:'Sqft',
+                highlightsTitle:'Property Highlights',
+                ctaText:'Contact Us to View',
+                waLink:'https://wa.me/8613611372696?text=Hi%2C%20I\'m%20interested%20in%20Condor%20Marina%20Star',
+                footer:'Powered by OK.com · Dubai Real Estate',
+            },
+            ar:{
+                dir:'rtl', cat:'إيجار',
+                community:'كوندور مارينا ستار',
+                loc:'دبي مارينا · دبي مارينا',
+                priceLabel:'السعر المطلوب',
+                unitValue:'1 غرفة 1 صالة 1 حمام',
+                unitLabel:'نوع الوحدة', sizeLabel:'قدم مربع',
+                highlightsTitle:'مميزات العقار',
+                ctaText:'تواصل لمعاينة العقار',
+                waLink:'https://wa.me/8613611372696?text=مرحباً%2C%20أنا%20مهتم%20بـ%20كوندور%20مارينا%20ستار',
+                footer:'بدعم من OK.com · عقارات دبي',
+            },
+            zh:{
+                dir:'ltr', cat:'租房',
+                community:'康多尔码头之星',
+                loc:'迪拜码头 · 迪拜码头',
+                priceLabel:'参考价格',
+                unitValue:'1室1厅1卫',
+                unitLabel:'户型', sizeLabel:'平方英尺',
+                highlightsTitle:'房源特点',
+                ctaText:'联系看房',
+                waLink:'https://wa.me/8613611372696?text=你好，我对康多尔码头之星感兴趣',
+                footer:'由 OK.com 提供支持 · 迪拜房产',
+            },
+        };
+
+        function setLang(lang, btn){
+            const t=data[lang];
+            document.getElementById('page-body').className=lang==='ar'?'rtl':'';
+            document.querySelector('html').lang=lang==='ar'?'ar':lang==='zh'?'zh-CN':'en';
+
+            document.getElementById('cat-badge').textContent=t.cat;
+            document.getElementById('community-name').textContent=t.community;
+            document.getElementById('loc-text').textContent=t.loc;
+            document.getElementById('price-label').textContent=t.priceLabel;
+            document.getElementById('unit-value').textContent=t.unitValue;
+            document.getElementById('unit-label').textContent=t.unitLabel;
+            const sl=document.getElementById('size-label');
+            if(sl)sl.textContent=t.sizeLabel;
+            const ht=document.getElementById('highlights-title');
+            if(ht)ht.textContent=t.highlightsTitle;
+            document.getElementById('cta-text').textContent=t.ctaText;
+            document.getElementById('wa-btn').href=t.waLink;
+            document.getElementById('footer-text').textContent=t.footer;
+
+            ['en','ar','zh'].forEach(l=>{
+                const el=document.getElementById('highlights-'+l);
+                if(el)el.className='highlights-list'+(l===lang?'':' hidden');
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+            if(btn)btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
