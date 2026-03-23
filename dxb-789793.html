@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Fattan Tower - OK.com</title>
+    <meta property="og:title" content="Al Fattan Tower | OK.com">
+    <meta property="og:description" content="2 Bed 1 Living 3 Bath in Jumeirah Beach Residence | AED 11,000">
+    <meta property="og:image" content="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/2xysqCyz2TYS57oj9Ndj_w/mtPNUh9K0zy8uh2ZiFe4kHp6Y2a-rPPKJ5fy8vQ6WBFK63XzMbKHEJAhylRSCalFCyTJTuCrwirY9ZMy5PtYf1FvjHVwWKbiWS96W5IvZTPQQZmbbNNKEVL15oJws5lffySYgrAPRdr4H3O8MWmBwA/vBMLxoxSdMTeiDmoCmPvLNP2b4MIBVna8lOB0TO7W2I">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;}
+        body.rtl{direction:rtl;font-family:'Noto Sans Arabic',-apple-system,sans-serif;}
+        body.rtl .price-card{border-left:none;border-right:4px solid #1e3a5f;}
+        body.rtl .prev{left:auto;right:10px;}
+        body.rtl .next{right:auto;left:10px;}
+        .header{background:#1e3a5f;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;}
+        .brand{color:white;font-size:20px;font-weight:700;flex-shrink:0;}
+        .brand span{color:#f59e0b;}
+        .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+        .cat-badge{background:#10b981;color:white;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+        .lang-switcher{display:flex;gap:3px;}
+        .lang-btn{background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600;transition:all 0.2s;}
+        .lang-btn.active{background:white;color:#1e3a5f;border-color:white;}
+
+        .slideshow{position:relative;width:100%;height:290px;background:#0f172a;overflow:hidden;}
+        @media(min-width:768px){.slideshow{height:450px;}}
+        .slide{display:none;width:100%;height:100%;}
+        .slide.active{display:block;}
+        .slide img{width:100%;height:100%;object-fit:cover;}
+        .no-image{display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 14px;cursor:pointer;font-size:16px;border-radius:4px;z-index:10;}
+        .prev{left:10px;} .next{right:10px;}
+        .dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+        .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.3s;}
+        .dot.active{background:white;}
+        .image-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.6);color:white;padding:3px 8px;border-radius:10px;font-size:12px;}
+
+        .container{max-width:800px;margin:0 auto;padding:16px 16px 90px;}
+        .title-section{margin:16px 0 12px;}
+        .community-name{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2;margin-bottom:6px;}
+        .location{display:flex;align-items:center;gap:6px;color:#64748b;font-size:13px;text-decoration:none;}
+        .location:hover{color:#3b82f6;}
+
+        .price-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border-left:4px solid #1e3a5f;}
+        .price-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+        .price-value{font-size:28px;font-weight:800;color:#1e3a5f;}
+        .price-currency{font-size:14px;font-weight:600;color:#64748b;margin-right:4px;}
+
+        .specs-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;}
+        .spec-item{display:flex;align-items:center;gap:10px;}
+        .spec-icon{font-size:22px;}
+        .spec-value{font-size:16px;font-weight:700;color:#0f172a;}
+        .spec-label{font-size:11px;color:#94a3b8;}
+
+        .highlights-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .card-title{font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+        .highlights-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#334155;line-height:1.5;}
+        .highlights-list li::before{content:"✓";color:#10b981;font-weight:700;font-size:14px;flex-shrink:0;}
+
+        .cta-bar{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);z-index:100;}
+        .cta-inner{max-width:800px;margin:0 auto;}
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:white;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;text-decoration:none;width:100%;white-space:nowrap;}
+        .wa-btn:hover{background:#1da851;}
+
+        .footer{text-align:center;padding:16px;color:#94a3b8;font-size:11px;}
+        .hidden{display:none!important;}
+    </style>
+</head>
+<body id="page-body">
+    <div class="header">
+        <div class="brand">OK<span>.</span>com</div>
+        <div class="header-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+                <button class="lang-btn" onclick="setLang('ar',this)">عر</button>
+                <button class="lang-btn" onclick="setLang('zh',this)">中</button>
+            </div>
+            <div id="cat-badge" class="cat-badge">Rental</div>
+        </div>
+    </div>
+
+    <div class="slideshow">
+        <div class="slide active"><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/2xysqCyz2TYS57oj9Ndj_w/mtPNUh9K0zy8uh2ZiFe4kHp6Y2a-rPPKJ5fy8vQ6WBFK63XzMbKHEJAhylRSCalFCyTJTuCrwirY9ZMy5PtYf1FvjHVwWKbiWS96W5IvZTPQQZmbbNNKEVL15oJws5lffySYgrAPRdr4H3O8MWmBwA/vBMLxoxSdMTeiDmoCmPvLNP2b4MIBVna8lOB0TO7W2I" alt="Property 1"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/xrA0wxo1wTX16U0Cu2x_Eg/DGeh6TlBzkZLOfugIMpXZZLQgHq1br9Jjd9j-nw4km7nmwVs_ciAV235ctOx50usRd-oaOYufhzMz1bvnnWBFckR-8z3QgyizU9RTxHgWV5ZSvBqZ1Go8B2KDc8QQqmzQ7cuYqux43cvXEqJ88eGNw/ze-B9ScWnbYZNdYzBo8m8QrreFuWR_OwIIAfvywmQxo" alt="Property 2"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/5YKRxkNG3IY5hGYSqPCKmw/mXLZ01lonCPypDX7P96aJYA3zd-SPVxSREnwT6DlhO3m7Bor7WYxTwkRCH9a4raRuUqkQK97GilN8wXb9YyPG0pRx060lu7rfMkRYVsDyLiln_LhCZiX8VyFViDlmKXXsUnodKP4lHEU1LcYDKF5vA/YxErwyDk6fvHqP1munRyNn_UjoyYB8ICoRcipWY-Z9o" alt="Property 3"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/MN8tJAOctYqn4h6fqtTUPw/74B_oN9YtZQundmbjRqT1v-UetF_v_9QMYbmXo9KfhgFuJ86euyf3brNhoRbfqj69tcPK68r5RQPAw7aEiIOAL9hu-In1ugVB7c58AB8xgJUteH9fzAOgOyxg02E-yzqpxx-z4EJMt9Dtz8yXTc67g/uJf3_bWTvmP2zHav4jZh6wTegzgp63MrSyfMA83fHYc" alt="Property 4"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/MlC2Cas7pw3L6sejhJAGkw/piK7pudkJ2H1d6kfgLsaklr3tBJ_aAOXn8xgwXoAATQ3ABegIWmqrmXWpQfRwcdhqC1bbBPie_AlllPylQI0f6_pqLuCxt_Z2d88FMdS-h8ihz4FxhgHCUTNMEExY-91TBCaiG1cjSR_QPIe3HT1tg/Avn8EWEuNtHEvoULG-I8UHr192fBRG2ALpDtLmFtlFU" alt="Property 5"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/1WLyVnKoJXtI2XaaISNJlQ/4Jv1Asz5He5Dbi31wMlu5jNav6ho60imasGW9uQxndJv5Ot6K_eoasJyxKipwznL7bKC4wjkcds4N7gceheGrp6CzOwAXaF4VTyCV1NWLbqFNR2btwqQLRlOpoQe4tR2ttqEWzDzH6UCrGY0-MIZaA/UYW7JCcJDyTbkrUmUyB9J3gkotQAHDKUDKN3U4AKxj8" alt="Property 6"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/lBhOFK82fuHdPGxwvHR7GA/3-Y4XwfmR80x1QlUim2M4B-EW5ZKsyUMfoRllTAT0-bwI6CyZs087A4CangLRuiYwTKYUNPz_t-91s8LA7DDnbJGx_z57F4cAjfzrO-_eW7EjG3u84aGsfF9hbAc7ndIneTUfjTXdSHB-iO8fuAOxA/CfPgJufmdLERM3-VvaIAhZvLzlP01YRYtTBcAzaDV-g" alt="Property 7"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/Ue3V-VYg1uZ-ZMzZ9AHXHg/-ZZTN3GWr-PicGXrru4o9wU0vCrPsQKtrlqb1zFBYEKazaPXRmDqSlMj2NN7rqHq-AkDt0ccBm1k-V9bdQxk-6R7F5iiUXg2AoFCIcM1KYi5-6Qp2eKywLe1iNHB581i3CC2ZuXpJSP05fOVQibD8A/WrcQX77oclUquRGUrRascvarMee6YxQhqfHkwxK5W7Y" alt="Property 8"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774274400000/RdPnr9pKnEAmE8Lj5--FNg/qr_ajOZRCdJ5r3nHaUpNBECwJdRzwo9ahNpLW2R7bLevrW5pJcdlPP3Gk3nPXdUIzJ5eFwZzjVX6Pbn6wt4P-5BjFFGeKSSfp_1mFHWF1M2DG9eyQivxR-I1QrVemjkVOWb-xVAVpn2YayfnxCTCIg/s43BU-vNR49G58wE6PrXCTEGHqActK34hE4ZgxA_ho8" alt="Property 9"></div>
+
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button><button class="next" onclick="changeSlide(1)">&#10095;</button>
+        <div class="dots"><span class="dot active" onclick="goToSlide(0)"></span>
+<span class="dot " onclick="goToSlide(1)"></span>
+<span class="dot " onclick="goToSlide(2)"></span>
+<span class="dot " onclick="goToSlide(3)"></span>
+<span class="dot " onclick="goToSlide(4)"></span>
+<span class="dot " onclick="goToSlide(5)"></span>
+<span class="dot " onclick="goToSlide(6)"></span>
+<span class="dot " onclick="goToSlide(7)"></span>
+<span class="dot " onclick="goToSlide(8)"></span>
+</div>
+        <div class="image-count">1 / 9</div>
+    </div>
+
+    <div class="container">
+        <div class="title-section">
+            <div class="community-name" id="community-name">Al Fattan Tower</div>
+            <div class="location">
+                <span>📍</span>
+                <span id="loc-text">Jumeirah Beach Residence · JBR</span>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-label" id="price-label">ASKING PRICE</div>
+            <div class="price-value"><span class="price-currency">AED</span>11,000</div>
+        </div>
+
+        <div class="specs-card">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">🚪</span>
+                    <div>
+                        <div class="spec-value" id="unit-value">2 Bed 1 Living 3 Bath</div>
+                        <div class="spec-label" id="unit-label">Unit Type</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        
+        <div class="highlights-card">
+            <div class="card-title" id="highlights-title">Property Highlights</div>
+            <ul class="highlights-list" id="highlights-en"><li>Panoramic Ain Dubai View</li><li>Luxury Waterfront Living in JBR</li><li>Spacious 2-Bedroom Layout</li><li>Full Community Facilities</li><li>Proximity to Shopping, Dining, and Entertainment</li></ul>
+            <ul class="highlights-list hidden" id="highlights-ar"><li>إطلالة بانورامية على عين دبي</li><li>حياة فاخرة على الواجهة البحرية في JBR</li><li>شقة واسعة مكونة من غرفتي نوم</li><li>مرافق مجتمعية متكاملة</li><li>بالقرب من التسوق والمطاعم والترفيه</li></ul>
+            <ul class="highlights-list hidden" id="highlights-zh"><li>全景迪拜之眼景观</li><li>JBR海滨奢华生活</li><li>宽敞2卧室户型</li><li>社区设施齐全</li><li>毗邻购物餐饮娱乐</li></ul>
+        </div>
+
+        <div class="footer" id="footer-text">Powered by OK.com · Dubai Real Estate</div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="cta-inner">
+            <a id="wa-btn" href="https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20Al%20Fattan%20Tower%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-789793.html" class="wa-btn" target="_blank">
+                <span style="font-size:20px;">💬</span>
+                <span id="cta-text">Contact Us to View</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var currentSlide=0;
+        var slideEls=document.querySelectorAll('.slide');
+        var dotEls=document.querySelectorAll('.dot');
+        var countEl=document.querySelector('.image-count');
+        function updateSlide(){
+            slideEls.forEach(function(s){s.classList.remove('active');});
+            dotEls.forEach(function(d){d.classList.remove('active');});
+            if(slideEls[currentSlide])slideEls[currentSlide].classList.add('active');
+            if(dotEls[currentSlide])dotEls[currentSlide].classList.add('active');
+            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slideEls.length;
+        }
+        function changeSlide(dir){currentSlide=(currentSlide+dir+slideEls.length)%slideEls.length;updateSlide();}
+        function goToSlide(n){currentSlide=n;updateSlide();}
+
+        const data={
+            en:{
+                dir:'ltr', cat:'Rental',
+                community:'Al Fattan Tower',
+                loc:'Jumeirah Beach Residence · JBR',
+                priceLabel:'ASKING PRICE',
+                unitValue:'2 Bed 1 Living 3 Bath',
+                unitLabel:'Unit Type', sizeLabel:'Sqft',
+                highlightsTitle:'Property Highlights',
+                ctaText:'Contact Us to View',
+                waLink:'https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20Al%20Fattan%20Tower%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-789793.html',
+                footer:'Powered by OK.com · Dubai Real Estate',
+            },
+            ar:{
+                dir:'rtl', cat:'إيجار',
+                community:'برج الفتان',
+                loc:'مساكن شاطئ الجميرا · جي بي آر',
+                priceLabel:'السعر المطلوب',
+                unitValue:'2 غرفة نوم 1 صالة 3 حمام',
+                unitLabel:'نوع الوحدة', sizeLabel:'قدم مربع',
+                highlightsTitle:'مميزات العقار',
+                ctaText:'تواصل لمعاينة العقار',
+                waLink:'https://wa.me/8613611372696?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D8%A8%D9%80%20%D8%A8%D8%B1%D8%AC%20%D8%A7%D9%84%D9%81%D8%AA%D8%A7%D9%86%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-789793.html',
+                footer:'بدعم من OK.com · عقارات دبي',
+            },
+            zh:{
+                dir:'ltr', cat:'租房',
+                community:'阿勒法坦大厦',
+                loc:'朱美拉海滩住宅区 · JBR',
+                priceLabel:'参考价格',
+                unitValue:'2室1厅3卫',
+                unitLabel:'户型', sizeLabel:'平方英尺',
+                highlightsTitle:'房源特点',
+                ctaText:'联系看房',
+                waLink:'https://wa.me/8613611372696?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E5%AF%B9%E9%98%BF%E5%8B%92%E6%B3%95%E5%9D%A6%E5%A4%A7%E5%8E%A6%E6%84%9F%E5%85%B4%E8%B6%A3%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-789793.html',
+                footer:'由 OK.com 提供支持 · 迪拜房产',
+            },
+        };
+
+        function setLang(lang, btn){
+            const t=data[lang];
+            document.getElementById('page-body').className=lang==='ar'?'rtl':'';
+            document.querySelector('html').lang=lang==='ar'?'ar':lang==='zh'?'zh-CN':'en';
+
+            document.getElementById('cat-badge').textContent=t.cat;
+            document.getElementById('community-name').textContent=t.community;
+            document.getElementById('loc-text').textContent=t.loc;
+            document.getElementById('price-label').textContent=t.priceLabel;
+            document.getElementById('unit-value').textContent=t.unitValue;
+            document.getElementById('unit-label').textContent=t.unitLabel;
+            const sl=document.getElementById('size-label');
+            if(sl)sl.textContent=t.sizeLabel;
+            const ht=document.getElementById('highlights-title');
+            if(ht)ht.textContent=t.highlightsTitle;
+            document.getElementById('cta-text').textContent=t.ctaText;
+            document.getElementById('wa-btn').href=t.waLink;
+            document.getElementById('footer-text').textContent=t.footer;
+
+            ['en','ar','zh'].forEach(l=>{
+                const el=document.getElementById('highlights-'+l);
+                if(el)el.className='highlights-list'+(l===lang?'':' hidden');
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+            if(btn)btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
