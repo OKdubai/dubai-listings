@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creek Harbour 17 Icon Bay - OK.com</title>
+    <meta property="og:title" content="Creek Harbour 17 Icon Bay | OK.com">
+    <meta property="og:description" content="2 Beds 1 Living 2 Bath in Dubai Creek Harbour | AED 2,390,000">
+    <meta property="og:image" content="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/raFcD9SA5bEwqDJS2a_dlg/TKn5_9AzsMWVeqB_M41Fk7GhRxBPt7-TiZZPOaOCj4UCX0ZIakz3MiXcx11uGOMKayhSMi4VehxPJGZe1lCYVEr8WasT4vfGJO61vaB1p3fqeHGGJaUqjbpUIfgBfx4JTMqOPtC9ppBoYRIN8KfkFQ/l0gwfOKF1pG9PBeZhR4v3kSgMR2hvgdWlonu9d7OtXc">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;}
+        body.rtl{direction:rtl;font-family:'Noto Sans Arabic',-apple-system,sans-serif;}
+        body.rtl .price-card{border-left:none;border-right:4px solid #1e3a5f;}
+        body.rtl .prev{left:auto;right:10px;}
+        body.rtl .next{right:auto;left:10px;}
+        .header{background:#1e3a5f;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;}
+        .brand{color:white;font-size:20px;font-weight:700;flex-shrink:0;}
+        .brand span{color:#f59e0b;}
+        .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+        .cat-badge{background:#3b82f6;color:white;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+        .lang-switcher{display:flex;gap:3px;}
+        .lang-btn{background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600;transition:all 0.2s;}
+        .lang-btn.active{background:white;color:#1e3a5f;border-color:white;}
+
+        .slideshow{position:relative;width:100%;height:290px;background:#0f172a;overflow:hidden;}
+        @media(min-width:768px){.slideshow{height:450px;}}
+        .slide{display:none;width:100%;height:100%;}
+        .slide.active{display:block;}
+        .slide img{width:100%;height:100%;object-fit:cover;}
+        .slide video{width:100%;height:100%;object-fit:contain;background:#000;}
+        .no-image{display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 14px;cursor:pointer;font-size:16px;border-radius:4px;z-index:10;}
+        .prev{left:10px;} .next{right:10px;}
+        .dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+        .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.3s;}
+        .dot.active{background:white;}
+        .image-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.6);color:white;padding:3px 8px;border-radius:10px;font-size:12px;}
+
+        .container{max-width:800px;margin:0 auto;padding:16px 16px 90px;}
+        .title-section{margin:16px 0 12px;}
+        .community-name{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2;margin-bottom:6px;}
+        .location{display:flex;align-items:center;gap:6px;color:#64748b;font-size:13px;text-decoration:none;}
+        .location:hover{color:#3b82f6;}
+
+        .price-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border-left:4px solid #1e3a5f;}
+        .price-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+        .price-value{font-size:28px;font-weight:800;color:#1e3a5f;}
+        .price-currency{font-size:14px;font-weight:600;color:#64748b;margin-right:4px;}
+
+        .specs-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;}
+        .spec-item{display:flex;align-items:center;gap:10px;}
+        .spec-icon{font-size:22px;}
+        .spec-value{font-size:16px;font-weight:700;color:#0f172a;}
+        .spec-label{font-size:11px;color:#94a3b8;}
+
+        .highlights-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .card-title{font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+        .highlights-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#334155;line-height:1.5;}
+        .highlights-list li::before{content:"✓";color:#10b981;font-weight:700;font-size:14px;flex-shrink:0;}
+
+        .cta-bar{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);z-index:100;}
+        .cta-inner{max-width:800px;margin:0 auto;}
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:white;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;text-decoration:none;width:100%;white-space:nowrap;}
+        .wa-btn:hover{background:#1da851;}
+
+        .footer{text-align:center;padding:16px;color:#94a3b8;font-size:11px;}
+        .hidden{display:none!important;}
+    </style>
+</head>
+<body id="page-body">
+    <div class="header">
+        <div class="brand">OK<span>.</span>com</div>
+        <div class="header-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+                <button class="lang-btn" onclick="setLang('ar',this)">عر</button>
+                <button class="lang-btn" onclick="setLang('zh',this)">中</button>
+            </div>
+            <div id="cat-badge" class="cat-badge">Ready</div>
+        </div>
+    </div>
+
+    <div class="slideshow">
+        <div class="slide active"><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/raFcD9SA5bEwqDJS2a_dlg/TKn5_9AzsMWVeqB_M41Fk7GhRxBPt7-TiZZPOaOCj4UCX0ZIakz3MiXcx11uGOMKayhSMi4VehxPJGZe1lCYVEr8WasT4vfGJO61vaB1p3fqeHGGJaUqjbpUIfgBfx4JTMqOPtC9ppBoYRIN8KfkFQ/l0gwfOKF1pG9PBeZhR4v3kSgMR2hvgdWlonu9d7OtXc" alt="Property 1"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/-aEOIEpoi47D4fTjqAY_jg/MKrpmr28tpJOCze4u_mcSmdJXtNS4gXzikeDbxpzzWkRoN6e5EB7qivz1pXi3_wDZnSlb2XW9b4ygi54_pgu3lUt2abA9Mqbrrd0q1GlNGmGAUo56bXSUFcLErhBizygl7EWN0ggQU-NCzQHpUsVBw/-bOg6s3-N6Ficjs8iUuq8OXJewxo8xKMNCqvOK2w2g0" alt="Property 2"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/EFyvUQodAEj5vaTSfkmTmA/DibvKPT0BHcpoWgQcAn9KoF5mQdOhGKnfKtb3--bvwdwQDoM-L-I6udgmGz822D6jMjBTfNeOMkEkHY4wjjYD79_vw1fQMyUrmlV-QGnwJlekVPx7icbp1asTW7Xgs4JpZLvIHDyjpww-rfnhkRUuQ/-2EFuy4Bzn6ktOVPI91wp_NfNbtvKuXTCz0uWUo4AU4" alt="Property 3"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/D5q-_5tCSptAsu61MHGfLQ/_hn05OVXWv4m1vHxGQaPx0TRqPedz8etos_pbeYN2KQ8D9GDQvVQuceDZBvfOeic1C_ZMNRhOZjbObYfKJuIlLAZUcfjTimA0g2j6nWowjWWIyxFqF-c6LWuJGxUYgacICpRz-sEE49gV2tVbnsI_A/h7w-Sb9op0DJdzGzzUzEbrdsCOoRmkDVkrNdYbq7KQ4" alt="Property 4"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/vJqBHDfunAerIda6FbDw_A/fWW08EzhRuDPmDoLWDC_GuVjMSYLBnuwNLPsn7Tx6Y9H2NqaLsRG2oi3X8DFpnyp2u7FEisN29uh8rKR7OQdTNxa5HnM53cq2io-9-CUWA3WQDIXXF6833Me8GdK0aEYba1wx7RH6n30j8hkLiDx5Q/5j0xvWhzUlec6VRgfMnRgn6G1L1xhfHh2NnIYV8CwsA" alt="Property 5"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/2Asy9KIbxsc5rIiGyPhKTg/U-yg4_eFSOYruJwKt8Ff24m2BiJe3DrEwQ5aCCS8LKj7FHrSKnX730Pay-izpNOZkqkWmdg6w0LtSwseXTLwNsATK0OlJWY8vG-4wqIW4lN9l0_dHdJz0QsNLqDTJI_XJgEq7kvONfytCryZPQcbvA/R9868MxZH1Bv5_tra0aa42hfInmJPG0xFys-b3C6zaE" alt="Property 6"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/WMD41ONaHeeNwSVO_Tjw0g/MluJhDHPVrsV8j-Hk6q_a2Q2tegBsKBNsg_T1N_CHVJrHGqPipGyH3C2Ms4Q1H2QOtiudR0B7oL2IfzzVg8UlWQzkhIX51xbyBmWecG5SU6s_a3o3PWcmiM332s7NTTIGabHJwl8aTawtBsGK08fcg/3AdRpH9KsX2p7FVMbLdFeQhyvdHoQqP7OOzyNGh_bjE" alt="Property 7"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/bv7PxKHKE-QmTYT7otKTQw/OMkgF4FhKLVOqm_04u50LK0FcsG4ToxtpkyvywI-9HYI76d2UNheRyBTnIka8rbKB1sVDG6Jap9jhO0cY7DHa-4u5ievzKUD_3bu4JbaH__ks1rZHzqUQ8ao9D4q7JvpXLIUrmxR2if_hl716_tG8g/vzbXXjRy7v7YDR6vVC659lmxCkbfMs_E89Qu3rMFM9c" alt="Property 8"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/g-qD4FGrWPDLRGATQz39Fw/hnMT-euvpiCd1ykNVwQwg-r9EPUYxshT0Xq8XDYWmFnbFp1QHqP7W3iDXKfNJto5kE5N1-BJnkVMIRygtPQw7spr3l68kHzoixtbQVfiUN4DyEmWMiHL2TiH1Yt-5FtLtQkK6iUXZF_19ZfUTU2Eaw/tE4EIssTqsPszii8Dr21Cag-_XNTz2-rSxb48kNVIYo" alt="Property 9"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/UvvwV96511wJ5AVNmRdS6g/fQkA8r-DuU1-WQNQf74I5a8f7DS7gkYARfS4ywkj6LzevP6BTF0xZws59wCRGxtbNRnTP2y7-jplxfyI74hNJ78W8EygvZ_rOhB6G90cRnZJYqzq7vE_l_c21UUvr-u6r4eO9XOho77tKTLxY4AJdA/zf4Bno8oK2UzxzlcnH_Rt0Vg1BOwI7RHWFQpFRLzavU" alt="Property 10"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/MElynC4lekfkYLUJQlJfnw/qMrRa2uasjYpkQ5JBSkCi97m4Fo8i70VEJ_Y7Uyqx5F6Z-fQnXHaYtABV0LUGzKHn1-c4CILdOQFeXyl9GnBOxgH_nAqLCvG0xJwAmp_Og8sBAJED9iV7fMIXsRlKWMFLPbLHDm01UwfpqTi-9Thrg/79m1ayfrRloeybTAtSqqrifFyvhVDMyIATJcAjaS4UY" alt="Property 11"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/gt33Iat5yaX8fDmCg0E6iw/A3YWQSGOAsRJLWaaAeWYNfGkHp5_7FI7Oed69Zc1uw6MfiFLWZ_sGYRtFAO1EbUoWM_NhF2PXp071_z6OBGIMSY-anb-Z0thrDZUfciP_RU8n9kbjz45GuOmeyxukx-unDPIjaFBVLBuJFjnc9PG1w/Woq279_pEa7TLffVcdR2DKHOxeSEhrPSao8AQgNNQOw" alt="Property 12"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/NWx91nnuBCyVfs6q5eIkYA/v2IddPxBZtpGzwReYDSiy6a6d6YHeTPUy8v0TFMD5AYa7Jwca6n7-AheLlL8W2JtgbLFokOb6O0Cn4ukLEsaEmCYJ0mKRVf9EfiYIJMgrTDD_3cBcDvF03P6xRvDTX5_9XC83QtqhdGHCwNC6X3ANw/4fv8aX4cN9bcRIhvxbvLq41jTixAfTDFbh4n8QxjFeU" alt="Property 13"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/03dxjPd3x5v1c-thX_mBjg/QkqOCbrp9_JozcUxWqDXYClsdpWkC95EQ-p_EmRJOG4jomXZbIEVyRDoZiwLp6XRm0t3MbnqpRIfLJJms01nfDE54qen1IUmpckLwHdAf7N48eoujmyIeZuCRt8mt1-DzJZCwLacldVA4POR29XATw/zXKcYk-GarnbjJCkz5aXVcvHQhFfQJKwCcQcyewboFc" alt="Property 14"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/hbMdG3yzz2-_RsF_oD2Qkg/_Ckgjwk8kfdz2KW8UZL1xr98hZ5US6fyaB64VwLWbz7Mq1iCI3VG6uTAfB_rj9AIy5uK1sLzaLQ7de-RnATUl_SbDD46F7FOZtrf-zTuhHkwAMEKWbrbnTvXPZ0FXdoJaX3e3_A-A1t9uQjw5D9n-g/RfwaPKtcBN0Kw48t7IwHgqJBUKU3CAb1U1ANVoBWMfo" alt="Property 15"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/Ykh0Pz-yzAcRfWeuyR112Q/xRRe-2Dnu2u6ZjSr0KNSFZCNx5Ck1y7ocaMyTeZi3KFLYjPPbC8bE7NprZYoVAPMdvW1Iq4AUxjvc1vDI8OcZvb9NzwhkhPw1-7cxdmvOhFBe0m8t8nQcNxxjhdQ2lC8tzzOUFxn1ApTjxDcuwQxxA/-y1kfId6k_9iCFT72FP0vcYY1highOFAvCVj7SmN44E" alt="Property 16"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774332000000/KOlTYlmTUPxJN15n4XCIHQ/j3UISforoxwAWyR2I_jz0G9lVKdOIQXPxvADwDGzsbFxpduU9WBDLXAkR-qgRRTIv4_AfrgBPr7LTwG8FHLssnBWiuk0HIKkEGCnwMof2Mss9Ik_g5exOC2g4uWci3oxoQhd3EEW-DZ65xghvdfPfA/G80MrWkgRw44YpZkwGxUQfz2x6iTW_VX9GKNI-TaEes" alt="Property 17"></div>
+
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button><button class="next" onclick="changeSlide(1)">&#10095;</button>
+        <div class="dots"><span class="dot active" onclick="goToSlide(0)"></span>
+<span class="dot " onclick="goToSlide(1)"></span>
+<span class="dot " onclick="goToSlide(2)"></span>
+<span class="dot " onclick="goToSlide(3)"></span>
+<span class="dot " onclick="goToSlide(4)"></span>
+<span class="dot " onclick="goToSlide(5)"></span>
+<span class="dot " onclick="goToSlide(6)"></span>
+<span class="dot " onclick="goToSlide(7)"></span>
+<span class="dot " onclick="goToSlide(8)"></span>
+<span class="dot " onclick="goToSlide(9)"></span>
+<span class="dot " onclick="goToSlide(10)"></span>
+<span class="dot " onclick="goToSlide(11)"></span>
+<span class="dot " onclick="goToSlide(12)"></span>
+<span class="dot " onclick="goToSlide(13)"></span>
+<span class="dot " onclick="goToSlide(14)"></span>
+<span class="dot " onclick="goToSlide(15)"></span>
+<span class="dot " onclick="goToSlide(16)"></span>
+</div>
+        <div class="image-count">1 / 17</div>
+    </div>
+
+    <div class="container">
+        <div class="title-section">
+            <div class="community-name" id="community-name">Creek Harbour 17 Icon Bay</div>
+            <div class="location">
+                <span>📍</span>
+                <span id="loc-text">Dubai Creek Harbour · Creek Island</span>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-label" id="price-label">ASKING PRICE</div>
+            <div class="price-value"><span class="price-currency">AED</span>2,390,000</div>
+        </div>
+
+        <div class="specs-card">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">🚪</span>
+                    <div>
+                        <div class="spec-value" id="unit-value">2 Beds 1 Living 2 Bath</div>
+                        <div class="spec-label" id="unit-label">Unit Type</div>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">📐</span>
+                    <div>
+                        <div class="spec-value">99</div>
+                        <div class="spec-label" id="size-label">Sqft</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="highlights-card">
+            <div class="card-title" id="highlights-title">Property Highlights</div>
+            <ul class="highlights-list" id="highlights-en"><li>Below market price by AED 2.39 million</li><li>High Floor</li><li>Burj Khalifa View + Sea View + Park View</li><li>With tenancy contract until June 2026</li><li>Located on Creek Island</li></ul>
+            <ul class="highlights-list hidden" id="highlights-ar"><li>أقل من سعر السوق بمقدار 2.39 مليون درهم</li><li>طابق علوي</li><li>إطلالة على برج خليفة + إطلالة بحرية + إطلالة على الحديقة</li><li>مؤجرة حتى يونيو 2026</li><li>تقع في جزيرة الخور</li></ul>
+            <ul class="highlights-list hidden" id="highlights-zh"><li>低于市场价239万迪拉姆</li><li>高楼层</li><li>哈利法塔景 + 海景 + 公园景</li><li>带租约至2026年6月</li><li>位于云溪岛上</li></ul>
+        </div>
+
+        <div class="footer" id="footer-text">Powered by OK.com · Dubai Real Estate</div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="cta-inner">
+            <a id="wa-btn" href="https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20Creek%20Harbour%2017%20Icon%20Bay%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-eb2ce5.html" class="wa-btn" target="_blank">
+                <span style="font-size:20px;">💬</span>
+                <span id="cta-text">Contact Us to View</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var currentSlide=0;
+        var slideEls=document.querySelectorAll('.slide');
+        var dotEls=document.querySelectorAll('.dot');
+        var countEl=document.querySelector('.image-count');
+        function updateSlide(){
+            slideEls.forEach(function(s){s.classList.remove('active');});
+            dotEls.forEach(function(d){d.classList.remove('active');});
+            if(slideEls[currentSlide])slideEls[currentSlide].classList.add('active');
+            if(dotEls[currentSlide])dotEls[currentSlide].classList.add('active');
+            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slideEls.length;
+        }
+        function changeSlide(dir){currentSlide=(currentSlide+dir+slideEls.length)%slideEls.length;updateSlide();}
+        function goToSlide(n){currentSlide=n;updateSlide();}
+
+        const data={
+            en:{
+                dir:'ltr', cat:'Ready',
+                community:'Creek Harbour 17 Icon Bay',
+                loc:'Dubai Creek Harbour · Creek Island',
+                priceLabel:'ASKING PRICE',
+                unitValue:'2 Beds 1 Living 2 Bath',
+                unitLabel:'Unit Type', sizeLabel:'Sqft',
+                highlightsTitle:'Property Highlights',
+                ctaText:'Contact Us to View',
+                waLink:'https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20Creek%20Harbour%2017%20Icon%20Bay%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-eb2ce5.html',
+                footer:'Powered by OK.com · Dubai Real Estate',
+            },
+            ar:{
+                dir:'rtl', cat:'جاهز',
+                community:'ميناء خور دبي 17 آيكون باي',
+                loc:'ميناء خور دبي · جزيرة الخور',
+                priceLabel:'السعر المطلوب',
+                unitValue:'2 غرف نوم 1 صالة 2 حمام',
+                unitLabel:'نوع الوحدة', sizeLabel:'قدم مربع',
+                highlightsTitle:'مميزات العقار',
+                ctaText:'تواصل لمعاينة العقار',
+                waLink:'https://wa.me/8613611372696?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D8%A8%D9%80%20%D9%85%D9%8A%D9%86%D8%A7%D8%A1%20%D8%AE%D9%88%D8%B1%20%D8%AF%D8%A8%D9%8A%2017%20%D8%A2%D9%8A%D9%83%D9%88%D9%86%20%D8%A8%D8%A7%D9%8A%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-eb2ce5.html',
+                footer:'بدعم من OK.com · عقارات دبي',
+            },
+            zh:{
+                dir:'ltr', cat:'现房',
+                community:'云溪港 17 Icon Bay',
+                loc:'迪拜云溪港 · 云溪岛',
+                priceLabel:'参考价格',
+                unitValue:'2室1厅2卫',
+                unitLabel:'户型', sizeLabel:'平方英尺',
+                highlightsTitle:'房源特点',
+                ctaText:'联系看房',
+                waLink:'https://wa.me/8613611372696?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E5%AF%B9%E4%BA%91%E6%BA%AA%E6%B8%AF%2017%20Icon%20Bay%E6%84%9F%E5%85%B4%E8%B6%A3%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-eb2ce5.html',
+                footer:'由 OK.com 提供支持 · 迪拜房产',
+            },
+        };
+
+        function setLang(lang, btn){
+            const t=data[lang];
+            document.getElementById('page-body').className=lang==='ar'?'rtl':'';
+            document.querySelector('html').lang=lang==='ar'?'ar':lang==='zh'?'zh-CN':'en';
+
+            document.getElementById('cat-badge').textContent=t.cat;
+            document.getElementById('community-name').textContent=t.community;
+            document.getElementById('loc-text').textContent=t.loc;
+            document.getElementById('price-label').textContent=t.priceLabel;
+            document.getElementById('unit-value').textContent=t.unitValue;
+            document.getElementById('unit-label').textContent=t.unitLabel;
+            const sl=document.getElementById('size-label');
+            if(sl)sl.textContent=t.sizeLabel;
+            const ht=document.getElementById('highlights-title');
+            if(ht)ht.textContent=t.highlightsTitle;
+            document.getElementById('cta-text').textContent=t.ctaText;
+            document.getElementById('wa-btn').href=t.waLink;
+            document.getElementById('footer-text').textContent=t.footer;
+
+            ['en','ar','zh'].forEach(l=>{
+                const el=document.getElementById('highlights-'+l);
+                if(el)el.className='highlights-list'+(l===lang?'':' hidden');
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+            if(btn)btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
