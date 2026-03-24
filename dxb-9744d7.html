@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Acres - OK.com</title>
+    <meta property="og:title" content="The Acres | OK.com">
+    <meta property="og:description" content="5 Bedroom in Dubailand | AED 9,860,000">
+    <meta property="og:image" content="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/hBEPj4ayx9VAyCFZNYMAfw/YQuDKSJTwRa3_kwVYCl0hw0xmF7XOnS4BDyM6NB23Ka4m3v6ETcvEIYop7Jeq2akOZlRxYoN3hZpEGpOQQA6q77D-kwdocd8NGtVFoKyILs8fdqWY7PiR2ceyRVgT2zuMBBqrLd7BH2YGn7kBMWxeg/92kcqBwcnfxGgekAvpWMf9eT4StubxkZFmpiJXckfmY">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;}
+        body.rtl{direction:rtl;font-family:'Noto Sans Arabic',-apple-system,sans-serif;}
+        body.rtl .price-card{border-left:none;border-right:4px solid #1e3a5f;}
+        body.rtl .prev{left:auto;right:10px;}
+        body.rtl .next{right:auto;left:10px;}
+        .header{background:#1e3a5f;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;}
+        .brand{color:white;font-size:20px;font-weight:700;flex-shrink:0;}
+        .brand span{color:#f59e0b;}
+        .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+        .cat-badge{background:#f59e0b;color:white;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+        .lang-switcher{display:flex;gap:3px;}
+        .lang-btn{background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600;transition:all 0.2s;}
+        .lang-btn.active{background:white;color:#1e3a5f;border-color:white;}
+
+        .slideshow{position:relative;width:100%;height:290px;background:#0f172a;overflow:hidden;}
+        @media(min-width:768px){.slideshow{height:450px;}}
+        .slide{display:none;width:100%;height:100%;}
+        .slide.active{display:block;}
+        .slide img{width:100%;height:100%;object-fit:cover;}
+        .slide video{width:100%;height:100%;object-fit:contain;background:#000;}
+        .no-image{display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 14px;cursor:pointer;font-size:16px;border-radius:4px;z-index:10;}
+        .prev{left:10px;} .next{right:10px;}
+        .dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+        .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.3s;}
+        .dot.active{background:white;}
+        .image-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.6);color:white;padding:3px 8px;border-radius:10px;font-size:12px;}
+
+        .container{max-width:800px;margin:0 auto;padding:16px 16px 90px;}
+        .title-section{margin:16px 0 12px;}
+        .community-name{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2;margin-bottom:6px;}
+        .location{display:flex;align-items:center;gap:6px;color:#64748b;font-size:13px;text-decoration:none;}
+        .location:hover{color:#3b82f6;}
+
+        .price-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border-left:4px solid #1e3a5f;}
+        .price-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+        .price-value{font-size:28px;font-weight:800;color:#1e3a5f;}
+        .price-currency{font-size:14px;font-weight:600;color:#64748b;margin-right:4px;}
+
+        .specs-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;}
+        .spec-item{display:flex;align-items:center;gap:10px;}
+        .spec-icon{font-size:22px;}
+        .spec-value{font-size:16px;font-weight:700;color:#0f172a;}
+        .spec-label{font-size:11px;color:#94a3b8;}
+
+        .highlights-card{background:white;border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+        .card-title{font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+        .highlights-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#334155;line-height:1.5;}
+        .highlights-list li::before{content:"✓";color:#10b981;font-weight:700;font-size:14px;flex-shrink:0;}
+
+        .cta-bar{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);z-index:100;}
+        .cta-inner{max-width:800px;margin:0 auto;}
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:white;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;text-decoration:none;width:100%;white-space:nowrap;}
+        .wa-btn:hover{background:#1da851;}
+
+        .footer{text-align:center;padding:16px;color:#94a3b8;font-size:11px;}
+        .hidden{display:none!important;}
+    </style>
+</head>
+<body id="page-body">
+    <div class="header">
+        <div class="brand">OK<span>.</span>com</div>
+        <div class="header-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+                <button class="lang-btn" onclick="setLang('ar',this)">عر</button>
+                <button class="lang-btn" onclick="setLang('zh',this)">中</button>
+            </div>
+            <div id="cat-badge" class="cat-badge">Off-Plan</div>
+        </div>
+    </div>
+
+    <div class="slideshow">
+        <div class="slide active"><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/hBEPj4ayx9VAyCFZNYMAfw/YQuDKSJTwRa3_kwVYCl0hw0xmF7XOnS4BDyM6NB23Ka4m3v6ETcvEIYop7Jeq2akOZlRxYoN3hZpEGpOQQA6q77D-kwdocd8NGtVFoKyILs8fdqWY7PiR2ceyRVgT2zuMBBqrLd7BH2YGn7kBMWxeg/92kcqBwcnfxGgekAvpWMf9eT4StubxkZFmpiJXckfmY" alt="Property 1"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/ez3HczSZatW7mtkwrMcMiw/NPuKoq9N8SmFL6ZJJVsGRBEdU0yBV_zfzHcsN3Lr2dIcWGBFrHJOjkqqx6hhsQpjdZyYay0B6x6VL_Dge6UXnLKz4ZoQ8-8Zaaizg11frn4nuiCDwGjAARGHPvl74cxS_cil8SB3nfvPHcrgyt-mqA/HcHPzqPOofIGlEcG7G7c6YldK0ZPZKQ_Z7K0Dd-NojQ" alt="Property 2"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/_Fb7yhZAv_dG54sLo3CBdQ/LBcf7aBBJumIWZTz_fFTsANKGJzbvPvtb1l5aISmJMbM0As70wYUjzn61k6QQUVqRGATKXudJGng9V3E87Y8sE8PKsyjVojj6FG2us5-V5wMTz9UPpKmzmCW7p7KmqrfPedxgUEtTo6hZQaQ8pL1KA/fvPGqmkbK7p774QY43kpsukAJI88NitT0-cng-EbO0o" alt="Property 3"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/dswmu_2j9inS_aLa12hMqA/lJI-nPhk0pr-2vXJaz0cmXruGtmPB1ci9GcCzA2pN9NbQkCLwPPhESA4S_dYoRRCSLVPywsJ6M6hrwAAYUo9qxLRqHvSM1TaAmHcPqyHdx3-u2vquNWeWLmVGYs8Yb6tv1yejLC6mniso9zQ8NTRHQ/W3BiyMYMWyJ7JspzGk8aGVRr7NTN_CD5k1AGjLubHkg" alt="Property 4"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/v2JOu4uknwxxym5mfrmzhg/F9MSqeb579N06k2wkd5OSxT6iwMB6PST8GXIhmGM0yLkaaoVdI8CF_xH1787Mg-rZWAxMISi5mhmfKXp1IS9nP8YqtV5jbYfZkckUKad-U_E9a39LbgclCwzOKJtxgFzhMj6GE3yQTovPNWaKtIUWg/4koPdEGyllktqvws2DSLgM8nl0O07QY_kMC9KvfjufY" alt="Property 5"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/Qn2Z33qONWaP7WaPf1wC5w/TXPnIl4BESYLIc6wI5BfiuNZ66ieMA4tSYEafNY6tTrqc_aKZLGYBy2LEy2SXNMCgTd854goCYA-BgBiB7oRIC6a1MF5JmMQriKp6mAZqJ1O_TBXHLQQQKKrxmcVKIxQq-gyL1fEYM7XxEs1RMUc0g/dJ8AnyxT9fLpbgGWO7nbApf_ZrmKVXWTN9YC30ZPhbk" alt="Property 6"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/RBywG3SgdRb2c7rw7cWvRg/0Dy4wCyvp9aIs28iu6eTKQ2TmYJBy-2hmvT04zYtG9CslYxtgxyq8NrrvJSAaMgbcobQQY-uw4ILFvy3GXqVOlGYxinYGUYblBBqndLnfO-1ZrOBGmBvcB38On6UHf4yB3V8azMMFtUJlTjY37QwoQ/3-SdhrilvRrI4kijdNyzSK7L0_iIfBCBOiR5-86EXis" alt="Property 7"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/AWUGN8eMZUHxr1Ryb5fdiA/HkTNBHE4P1gqN2wOHd40RDWjZrGVrX_bDlCGTVnL4mb-B5KjD9UPsdbdwalexsVMnNTWpvyJuA_3YGgp-Z8e_YIcLeGjGIPzXo69cno3Uw51U_kfxdkdjvBAvoJXra3Ti-hx5S3tFddvtTbWEmN0sw/IGPSFQ8Uurmj4PYrmRnNSH4JnlAsr9xyyRdfybzz-Tw" alt="Property 8"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/wuLb55QVVh6-_AQdPoO-vg/35u8edPP1SRz0SgfbD9gj9n1A0IZ1u3q73e3JXUiY-NPT8tiw0I7Q7LAYZ_8H5Yvj1FadOBhC_OVn10MsV4-ePxqVTiGSQgTo54xo5UCP46Z9q__7afIIWd6Zew3oa8QPcXpjNTyDVqGUtRA5h1XXg/aHp6vGT7rMUdERs82r1hIqRCaIaMrpWWrYB08l3Vb7g" alt="Property 9"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/JPOzYj13bZZbhiw3L9rirQ/HqM8dOwVbPTU5R5KUWeJeXC-EI81plpfgGVP-rIGwmsInqpNzZcoM_WN4RsWZSd18GC03Obb7oFZsAD_xXzqNzz2FPQjyCnio20KPF3E8CS1h7f9cSFHAEPNRZHClOb4hiGSBiMz5dcwqkWJMdpGJA/TDQsuOkh8mkedkYKbbZtuxaXv_hQ3FlF6ZiYXBwvdmI" alt="Property 10"></div>
+<div class="slide "><img src="https://v5.airtableusercontent.com/v3/u/51/51/1774346400000/GJq5ZL8JjpmFuHLO9ev8lw/rysij1mU-T5ubvU9X3XxkS0Txq_5Du2op_3YamD1_7gGaGku-3AGhsb1FmyyPAMan7dhnu8KvWKJWHhyqzmBE9bb_sG90YCLT_ZYhmAEFeNiB2sR3m4GjttMYK6ct0ET9bxwsUkULBKu5VyQnFoE3g/55Pa_65_nU1t63viA4SCIdvEnHLIYTjFGcTveurvhGg" alt="Property 11"></div>
+
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button><button class="next" onclick="changeSlide(1)">&#10095;</button>
+        <div class="dots"><span class="dot active" onclick="goToSlide(0)"></span>
+<span class="dot " onclick="goToSlide(1)"></span>
+<span class="dot " onclick="goToSlide(2)"></span>
+<span class="dot " onclick="goToSlide(3)"></span>
+<span class="dot " onclick="goToSlide(4)"></span>
+<span class="dot " onclick="goToSlide(5)"></span>
+<span class="dot " onclick="goToSlide(6)"></span>
+<span class="dot " onclick="goToSlide(7)"></span>
+<span class="dot " onclick="goToSlide(8)"></span>
+<span class="dot " onclick="goToSlide(9)"></span>
+<span class="dot " onclick="goToSlide(10)"></span>
+</div>
+        <div class="image-count">1 / 11</div>
+    </div>
+
+    <div class="container">
+        <div class="title-section">
+            <div class="community-name" id="community-name">The Acres</div>
+            <div class="location">
+                <span>📍</span>
+                <span id="loc-text">Dubailand · The Acres</span>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-label" id="price-label">ASKING PRICE</div>
+            <div class="price-value"><span class="price-currency">AED</span>9,860,000</div>
+        </div>
+
+        <div class="specs-card">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">🚪</span>
+                    <div>
+                        <div class="spec-value" id="unit-value">5 Bedroom</div>
+                        <div class="spec-label" id="unit-label">Unit Type</div>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">📐</span>
+                    <div>
+                        <div class="spec-value">5411</div>
+                        <div class="spec-label" id="size-label">Sqft</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="highlights-card">
+            <div class="card-title" id="highlights-title">Property Highlights</div>
+            <ul class="highlights-list" id="highlights-en"><li>High-end pure detached villa community</li><li>Handover October 2027</li><li>Corner unit next to park, gym, and swimming pool</li><li>Located in the central part of Dubailand</li><li>Blending modern luxury with natural beauty</li></ul>
+            <ul class="highlights-list hidden" id="highlights-ar"><li>مجمع فلل منفصلة فاخرة بالكامل</li><li>التسليم في أكتوبر 2027</li><li>وحدة زاوية مجاورة للحديقة والصالة الرياضية وحمام السباحة</li><li>يقع في المنطقة المركزية من دبي لاند</li><li>مزيج من الفخامة العصرية والجمال الطبيعي</li></ul>
+            <ul class="highlights-list hidden" id="highlights-zh"><li>高端纯独栋社区</li><li>2027年10月交房</li><li>边户紧邻公园健身泳池</li><li>位于Dubailand中心地段</li><li>现代奢华与自然美景融合</li></ul>
+        </div>
+
+        <div class="footer" id="footer-text">Powered by OK.com · Dubai Real Estate</div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="cta-inner">
+            <a id="wa-btn" href="https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20The%20Acres%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-9744d7.html" class="wa-btn" target="_blank">
+                <span style="font-size:20px;">💬</span>
+                <span id="cta-text">Contact Us to View</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var currentSlide=0;
+        var slideEls=document.querySelectorAll('.slide');
+        var dotEls=document.querySelectorAll('.dot');
+        var countEl=document.querySelector('.image-count');
+        function updateSlide(){
+            slideEls.forEach(function(s){s.classList.remove('active');});
+            dotEls.forEach(function(d){d.classList.remove('active');});
+            if(slideEls[currentSlide])slideEls[currentSlide].classList.add('active');
+            if(dotEls[currentSlide])dotEls[currentSlide].classList.add('active');
+            if(countEl)countEl.textContent=(currentSlide+1)+' / '+slideEls.length;
+        }
+        function changeSlide(dir){currentSlide=(currentSlide+dir+slideEls.length)%slideEls.length;updateSlide();}
+        function goToSlide(n){currentSlide=n;updateSlide();}
+
+        const data={
+            en:{
+                dir:'ltr', cat:'Off-Plan',
+                community:'The Acres',
+                loc:'Dubailand · The Acres',
+                priceLabel:'ASKING PRICE',
+                unitValue:'5 Bedroom',
+                unitLabel:'Unit Type', sizeLabel:'Sqft',
+                highlightsTitle:'Property Highlights',
+                ctaText:'Contact Us to View',
+                waLink:'https://wa.me/8613611372696?text=Hi%2C%20I%27m%20interested%20in%20The%20Acres%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-9744d7.html',
+                footer:'Powered by OK.com · Dubai Real Estate',
+            },
+            ar:{
+                dir:'rtl', cat:'على الخريطة',
+                community:'ذا ايكرز',
+                loc:'دبي لاند · ذا ايكرز',
+                priceLabel:'السعر المطلوب',
+                unitValue:'5 غرف نوم',
+                unitLabel:'نوع الوحدة', sizeLabel:'قدم مربع',
+                highlightsTitle:'مميزات العقار',
+                ctaText:'تواصل لمعاينة العقار',
+                waLink:'https://wa.me/8613611372696?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D8%A8%D9%80%20%D8%B0%D8%A7%20%D8%A7%D9%8A%D9%83%D8%B1%D8%B2%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-9744d7.html',
+                footer:'بدعم من OK.com · عقارات دبي',
+            },
+            zh:{
+                dir:'ltr', cat:'期房',
+                community:'The Acres',
+                loc:'迪拜乐园 · The Acres',
+                priceLabel:'参考价格',
+                unitValue:'5室',
+                unitLabel:'户型', sizeLabel:'平方英尺',
+                highlightsTitle:'房源特点',
+                ctaText:'联系看房',
+                waLink:'https://wa.me/8613611372696?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E5%AF%B9The%20Acres%E6%84%9F%E5%85%B4%E8%B6%A3%0Ahttps%3A//OKdubai.github.io/dubai-listings/dxb-9744d7.html',
+                footer:'由 OK.com 提供支持 · 迪拜房产',
+            },
+        };
+
+        function setLang(lang, btn){
+            const t=data[lang];
+            document.getElementById('page-body').className=lang==='ar'?'rtl':'';
+            document.querySelector('html').lang=lang==='ar'?'ar':lang==='zh'?'zh-CN':'en';
+
+            document.getElementById('cat-badge').textContent=t.cat;
+            document.getElementById('community-name').textContent=t.community;
+            document.getElementById('loc-text').textContent=t.loc;
+            document.getElementById('price-label').textContent=t.priceLabel;
+            document.getElementById('unit-value').textContent=t.unitValue;
+            document.getElementById('unit-label').textContent=t.unitLabel;
+            const sl=document.getElementById('size-label');
+            if(sl)sl.textContent=t.sizeLabel;
+            const ht=document.getElementById('highlights-title');
+            if(ht)ht.textContent=t.highlightsTitle;
+            document.getElementById('cta-text').textContent=t.ctaText;
+            document.getElementById('wa-btn').href=t.waLink;
+            document.getElementById('footer-text').textContent=t.footer;
+
+            ['en','ar','zh'].forEach(l=>{
+                const el=document.getElementById('highlights-'+l);
+                if(el)el.className='highlights-list'+(l===lang?'':' hidden');
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+            if(btn)btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
